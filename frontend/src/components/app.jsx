@@ -1,5 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+import Modal from '../components/modal/modal_container'
 
 const App = () => {
   return(
@@ -32,7 +33,7 @@ const App = () => {
         </div>
       </div>
     </footer>
-    {/* <Modal /> */}
+    <Modal />
   </div>
   )
 }
