@@ -1,15 +1,18 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+import bootsrap from 'bootstrap'
+import HeaderContainer from '../components/header/header_container'
 import Modal from '../components/modal/modal_container'
 
 const App = () => {
   return(
   <div id='app' className='h-screen bg-yellow-700 bg-opacity-40'>
-    <Switch>
+    <HeaderContainer />
+    {/* <Switch> */}
       {/* <Route exact path='/' component={HeaderContainer}/>
       <Route exact path='/recipes/new' component={null}/>
       <Route exact path='/recipes/:recipeId' component={HeaderContainer}/> */}
-    </Switch>
+    {/* </Switch> */}
     <div className='relative pb-10'>
       <Switch>
         {/* <Route exact path='/' component={RecipesIndexContainer}/>

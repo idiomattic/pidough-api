@@ -1,6 +1,6 @@
 import { DISPLAY_MODAL, HIDE_MODAL } from "../actions/modal_actions";
 
-export default (state=null, action) => {
+const modalReducer = (state=null, action) => {
   switch (action.type) {
     case DISPLAY_MODAL:
       return action.modal
@@ -10,3 +10,5 @@ export default (state=null, action) => {
       return state
   }
 }
+
+export default modalReducer
