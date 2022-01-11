@@ -1,0 +1,23 @@
+@import "bootstrap";
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+// @import "functions";
+// @import "variables";
+// @import "mixins";
+
+$beige: #fae6c9;
+$brown: #653306;
+$grey: #505050;
+$white: #FFFEFD;
+
+$custom-theme-colors: (
+  "beige": $primary,
+  "brown": $brown,
+  "grey": $grey,
+  "white": $white
+);
+
+$theme-colors: map-merge($theme-colors, $custom-theme-colors);
+

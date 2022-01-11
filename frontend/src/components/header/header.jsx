@@ -1,6 +1,5 @@
 import React from "react"
 import { useHistory } from "react-router"
-import bootstrap from 'bootstrap'
 
 const Header = props => {
   const history = useHistory()
@@ -20,12 +19,14 @@ const Header = props => {
   }
   
   return (
-    <nav className='navbar navbar-expand-lg navbar-light bg-white'>
-      <div className="container-fluid">
-        <a className='navbar-brand' href='#'>PizzaPi</a>
-        <div className='flex align-middle'>
-          {rightNav}
-        </div>
+    <nav className='bg-white border-b-2 border-yellow-900 border-opacity-90'>
+      <div className='max-w-6xl mx-auto px-4'>
+        <header className='flex justify-between h-10 mt-7 mb-4'>
+          <h2 className='font-bold text-3xl' onClick={() => history.push({pathname: '/'})}>PizzaPi</h2>
+          <div className='flex align-middle'>
+            {rightNav}
+          </div>
+        </header> 
       </div>
     </nav>
   )

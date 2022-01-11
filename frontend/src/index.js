@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './Root';
 import configureStore from './store/store'
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 let store
 if (window.currentUser) {

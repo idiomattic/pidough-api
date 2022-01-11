@@ -3,3 +3,4 @@
 /node_modules
 /config/keys.js
 # /config/passport.js
+/frontend/node_modules

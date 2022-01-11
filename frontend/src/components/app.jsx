@@ -1,8 +1,8 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import bootsrap from 'bootstrap'
 import HeaderContainer from '../components/header/header_container'
 import Modal from '../components/modal/modal_container'
+import '../index.css'
 
 const App = () => {
   return(
