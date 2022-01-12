@@ -6,7 +6,7 @@ import { hideModal, displayModal } from "../../actions/modal_actions";
 
 const mSTP = ({ errors }) => ({
   formType: 'Sign Up',
-  errors: errors.session
+  // errors: errors.session
 })
 
 const mDTP = dispatch => ({

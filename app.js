@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-app.get("/api", (req, res) => res.send("Hello World 2"));
+app.get("/", (req, res) => res.send("Hello World 2"));
 app.use("/api/users", users);
 app.use(passport.initialize());
 require('./config/passport')(passport);

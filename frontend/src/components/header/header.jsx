@@ -1,8 +1,8 @@
 import React from "react"
-import { useHistory } from "react-router"
+import { withRouter } from "react-router"
 
 const Header = props => {
-  const history = useHistory()
+  const {history} = props
 
   let { currentUserId, displayModal } = props
   let rightNav
@@ -31,4 +31,4 @@ const Header = props => {
   )
 }
 
-export default Header
+export default withRouter(Header)

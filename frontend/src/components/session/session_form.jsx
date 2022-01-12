@@ -6,7 +6,8 @@ class SessionForm extends React.Component {
     super(props)
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      password2: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -36,18 +37,29 @@ class SessionForm extends React.Component {
     })
   }
 
-  handleErrors() {
-    return(
-      <ul className='session error-list'>
-        {this.props.errors.map((error, i) => (
-          <li key={i}>{error}</li>
-        ))}
-      </ul>
-    )
-  }
+  // handleErrors() {
+  //   return(
+  //     <ul className='session error-list'>
+  //       {this.props.errors.map((error, i) => (
+  //         <li key={i}>{error}</li>
+  //       ))}
+  //     </ul>
+  //   )
+  // }
 
   formGreeting() {
-    return this.props.formType === 'Sign In' ? 'Welcome Back.' : 'PiDough.'
+    return this.props.formType === 'Sign In' ? 'Welcome Back.' : 'Join PiDough.'
+  }
+
+  password2() {
+    return this.props.formType === 'Sign In' ? null 
+      : <label>Retype Password:
+          <br />
+          <input className='w-64 mb-3 border-b-2 border-yellow-900 outline-0' 
+            type="password" 
+            value={this.state.password} 
+            onChange={this.update('password')} />
+        </label>
   }
 
   render() {
@@ -67,13 +79,14 @@ class SessionForm extends React.Component {
           <br />
           <label>Password:
             <br />
-            <input className='w-64 border-b-2 border-yellow-900 outline-0' 
+            <input className='w-64 mb-3 border-b-2 border-yellow-900 outline-0' 
               type="password" 
               value={this.state.password} 
               onChange={this.update('password')} />
           </label>
           <br />
-          {this.handleErrors()}
+          {this.password2()}
+          {/* {this.handleErrors()} */}
           <br />
           <input className='mb-3 cursor-pointer font-medium text-gray-800 hover:text-black hover:italic' 
             type="submit" 
