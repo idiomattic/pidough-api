@@ -36,8 +36,8 @@ function Modal({modal, hideModal}) {
       return null;
   }
   return (
-    <div className={backgroundClass} onClick={hideModal}>
-      <div className={childClass} onClick={e => e.stopPropagation()}>
+    <div className='modal-background fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50' onClick={hideModal}>
+      <div className='modal-container max-w-sm p-6 bg-white divide-y divide-gray-500 rounded-lg' onClick={e => e.stopPropagation()}>
         { component }
       </div>
     </div>

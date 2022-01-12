@@ -9,15 +9,14 @@ const Header = props => {
 
   if (!currentUserId) {
     rightNav = <div className='flex items-center space-x-3'>
-      <a href="" className='font-medium text-gray-800 hover:text-black hover:font-extrabold hover:italic' onClick={() => displayModal('Sign In')}>Sign In</a>
-      <a href="" className='font-medium text-gray-800 hover:text-black hover:font-extrabold hover:italic' onClick={() => displayModal('Sign Up')}>Get Started</a>
+      <div className='font-medium text-gray-800 hover:text-black hover:italic' onClick={e => displayModal('Sign In')}>Sign In</div>
+      <div className='font-medium text-gray-800 hover:text-black hover:italic' onClick={e => displayModal('Sign Up')}>Get Started</div>
     </div>
   } else {
     rightNav = <div className='flex items-center space-x-3'>
-      <a href="">User</a>
+      <div>User</div>
     </div>
   }
-  
   return (
     <nav className='bg-white border-b-2 border-yellow-900 border-opacity-90'>
       <div className='max-w-6xl mx-auto px-4'>
