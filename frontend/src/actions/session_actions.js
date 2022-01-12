@@ -1,47 +1,52 @@
-import * as SessionApiUtil from '../util/session_api_util'
+import * as APIUtil from '../util/session_api_util';
+import jwt_decode from 'jwt-decode';
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER'
 export const SIGNOUT_CURRENT_USER = 'SIGNOUT_CURRENT_USER'
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS'
 export const CLEAR_SESSION_ERRORS = 'CLEAR_SESSION_ERRORS' 
 
-const receiveCurrentUser = user => ({
+export const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
-  user
-})
+  currentUser
+});
 
-
-const signoutCurrentUser = () => ({
-  type: SIGNOUT_CURRENT_USER
-})
-
-const receiveSessionErrors = errors => ({
+export const receiveErrors = errors => ({
   type: RECEIVE_SESSION_ERRORS,
   errors
-})
+});
 
-const clearSessionErrors = () => ({
+export const clearErrors = () => ({
   type: CLEAR_SESSION_ERRORS
 })
 
-export const signIn = user => dispatch => (
-  SessionApiUtil.signIn(user)
-    .then(user => dispatch(receiveCurrentUser(user)),
-      errors => dispatch(receiveSessionErrors(errors.responseJSON)))
-)
+export const logoutUser = () => ({
+  type: SIGNOUT_CURRENT_USER
+});
 
 export const signUp = user => dispatch => (
-  SessionApiUtil.signUp(user)
-    .then(user => dispatch(receiveCurrentUser(user)),
-      error => dispatch(receiveSessionErrors(error.responseJSON)))
+  APIUtil.signUp(user).then(res => (
+    dispatch(signIn({ username: user.username, password: user.password }))
+  ), err => (
+    dispatch(receiveErrors(err.response.data))
+  ))
+);
+
+export const signIn = user => dispatch => (
+  APIUtil.signIn(user).then(res => {
+    const { token } = res.data;
+    localStorage.setItem('jwtToken', token);
+    APIUtil.setAuthToken(token);
+    const decoded = jwt_decode(token);
+    dispatch(receiveCurrentUser(decoded))
+  })
+    .catch(err => {
+      dispatch(receiveErrors(err.response.data));
+    })
 )
 
-export const signOut = () => dispatch => (
-  SessionApiUtil.signOut()
-    .then(() => dispatch(signoutCurrentUser()),
-      error => dispatch(receiveSessionErrors(error.responseJSON)))
-)
-
-export const clearErrors = () => dispatch => (
-  dispatch(clearSessionErrors())
-)
+export const signOut = () => dispatch => {
+  localStorage.removeItem('jwtToken')
+  APIUtil.setAuthToken(false)
+  dispatch(logoutUser())
+};

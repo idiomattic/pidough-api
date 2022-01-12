@@ -1,25 +1,25 @@
-import $ from 'jquery'
+import axios from 'axios'
+
+export const setAuthToken = token => {
+  if (token) {
+    axios.defaults.headers.common['Authorization'] = token
+  } else {
+    delete axios.defaults.headers.common['Authorization']
+  }
+}
 
 export const signIn = user => (
-  $.ajax({
-    method: 'POST',
-    url: '/api/session',
-    data: {user}
-  })
+  axios.post('/api/users/signup', user)
 )
 
 export const signUp = user => (
-  $.ajax({
-    method: 'POST',
-    url: '/api/users',
-    data: {user}
-  })
+  axios.post('/api/users/signin', user)
 )
 
-export const signOut = () => (
-  $.ajax({
-    method: 'DELETE',
-    url: '/api/session'
-  })
-)
+// export const signOut = () => (
+//   $.ajax({
+//     method: 'DELETE',
+//     url: '/api/session'
+//   })
+// )
 

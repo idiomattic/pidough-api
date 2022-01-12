@@ -47,26 +47,27 @@ class SessionForm extends React.Component {
   }
 
   formGreeting() {
-    return this.props.formType === 'Sign In' ? 'Welcome Back.' : 'Join PizzaPi.'
+    return this.props.formType === 'Sign In' ? 'Welcome Back.' : 'PiDough.'
   }
 
   render() {
     return(
-      <div className='session-form-div'>
-        <h2 className='form-greeting' >{this.formGreeting()}</h2>
+      <div className=''>
+        <h2 className='mb-4 font-medium' >{this.formGreeting()}</h2>
+        {/* <span className='cursor-pointer top-1 right-3' onClick={() => this.props.hideModal()}>&times;</span> */}
         <form className='session-form' onSubmit={this.handleSubmit}>
-          <span className='close-button' onClick={() => this.props.hideModal()}>&times;</span>
-          <label>Enter your username here:
+          {/* <span className='cursor-pointer absolute top-1 right-3 font-extrabold' onClick={() => this.props.hideModal()}>&times;</span> */}
+          <label>Username:
             <br />
-            <input className='credentials' 
+            <input className='w-64 mb-3 border-b-2 border-yellow-900 outline-0' 
               type="text  " 
               value={this.state.username} 
               onChange={this.update('username')} />
           </label>
           <br />
-          <label>Your password:
+          <label>Password:
             <br />
-            <input className='credentials password' 
+            <input className='w-64 border-b-2 border-yellow-900 outline-0' 
               type="password" 
               value={this.state.password} 
               onChange={this.update('password')} />
@@ -74,7 +75,7 @@ class SessionForm extends React.Component {
           <br />
           {this.handleErrors()}
           <br />
-          <input className='black-button' 
+          <input className='mb-3 cursor-pointer font-medium text-gray-800 hover:text-black hover:italic' 
             type="submit" 
             value={this.props.formType} />
           <br />

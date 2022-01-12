@@ -2,27 +2,31 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './Root';
 import configureStore from './store/store'
+import jwt_decode from 'jwt-decode';
+import { setAuthToken } from './util/session_api_util';
+import { signOut } from './actions/session_actions';
 
-let store
-if (window.currentUser) {
-  const currentUser = window.currentUser
-  const preloadedState = {
-    session: { currentUserId: currentUser.id },
-    entities: {
-      users: { [currentUser.id]: currentUser }
+document.addEventListener('DOMContentLoaded', () => {
+  let store;
+  let persistor;
+  if (localStorage.jwtToken) {
+    setAuthToken(localStorage.jwtToken);
+    const decodedUser = jwt_decode(localStorage.jwtToken);
+    const preloadedState = { session: { isAuthenticated: true, user: decodedUser } };
+
+    ({ store, persistor } = configureStore(preloadedState));
+
+    const currentTime = Date.now() / 1000;
+    if (decodedUser.exp < currentTime) {
+      store.dispatch(signOut());
+      window.location.href = '/';
     }
+  } else {
+    ({ store, persistor } = configureStore({}));
   }
-  store = configureStore(preloadedState)
-  delete window.currentUser
-} else {
-  store = configureStore()
-}
+  const root = document.getElementById('root');
+  
+  window.getState = store.getState;
 
-window.store = store
-
-ReactDOM.render(
-  <React.StrictMode>
-    <Root store={store}/>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+  ReactDOM.render(<Root store={store} persistor={persistor} />, root);
+});
