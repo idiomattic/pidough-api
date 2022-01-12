@@ -20,20 +20,20 @@ export const clearErrors = () => ({
   type: CLEAR_SESSION_ERRORS
 })
 
-export const logoutUser = () => ({
+export const signoutUser = () => ({
   type: SIGNOUT_CURRENT_USER
 });
 
-export const signUp = user => dispatch => (
-  APIUtil.signUp(user).then(res => (
-    dispatch(signIn({ username: user.username, password: user.password }))
+export const signup = user => dispatch => (
+  APIUtil.signup(user).then(res => (
+    dispatch(signin({ username: user.username, password: user.password }))
   ), err => (
     dispatch(receiveErrors(err.response.data))
   ))
 );
 
-export const signIn = user => dispatch => (
-  APIUtil.signIn(user).then(res => {
+export const signin = user => dispatch => (
+  APIUtil.signin(user).then(res => {
     const { token } = res.data;
     localStorage.setItem('jwtToken', token);
     APIUtil.setAuthToken(token);
@@ -45,7 +45,7 @@ export const signIn = user => dispatch => (
     })
 )
 
-export const signOut = () => dispatch => {
+export const signout = () => dispatch => {
   localStorage.removeItem('jwtToken')
   APIUtil.setAuthToken(false)
   dispatch(logoutUser())

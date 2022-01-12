@@ -1,20 +1,20 @@
-import axios from 'axios'
+// import axios from 'axios'
 
-export const setAuthToken = token => {
-  if (token) {
-    axios.defaults.headers.common['Authorization'] = token
-  } else {
-    delete axios.defaults.headers.common['Authorization']
-  }
-}
+// export const setAuthToken = token => {
+//   if (token) {
+//     axios.defaults.headers.common['Authorization'] = token
+//   } else {
+//     delete axios.defaults.headers.common['Authorization']
+//   }
+// }
 
-export const signIn = user => (
-  axios.post('/api/users/signup', user)
-)
+// export const signin = user => (
+//   axios.post('/api/users/signin', user)
+// )
 
-export const signUp = user => (
-  axios.post('/api/users/signin', user)
-)
+// export const signup = user => (
+//   axios.post('/api/users/signup', user)
+// )
 
 // export const signOut = () => (
 //   $.ajax({
@@ -23,3 +23,12 @@ export const signUp = user => (
 //   })
 // )
 
+import axios from 'axios';
+
+export const setAuthToken = token => {
+  if (token) {
+    axios.defaults.headers.common['Authorization'] = token;
+  } else {
+    delete axios.defaults.headers.common['Authorization'];
+  }
+};

@@ -4,7 +4,7 @@ import Root from './Root';
 import configureStore from './store/store'
 import jwt_decode from 'jwt-decode';
 import { setAuthToken } from './util/session_api_util';
-import { signOut } from './actions/session_actions';
+import { signout } from './actions/session_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const currentTime = Date.now() / 1000;
     if (decodedUser.exp < currentTime) {
-      store.dispatch(signOut());
+      store.dispatch(signout());
       window.location.href = '/';
     }
   } else {

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import SessionForm from "./session_form";
-import { signIn, clearErrors } from "../../actions/session_actions";
+import { signin, clearErrors } from "../../actions/session_actions";
 import { hideModal, displayModal } from "../../actions/modal_actions";
 
 const mSTP = ({ errors }) => ({
@@ -10,7 +10,7 @@ const mSTP = ({ errors }) => ({
 })
 
 const mDTP = dispatch => ({
-  action: user => dispatch(signIn(user)),
+  action: user => dispatch(signin(user)),
   hideModal: () => dispatch(hideModal()),
   clearErrors: () => dispatch(clearErrors()),
   otherForm: (
