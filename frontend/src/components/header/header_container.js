@@ -3,7 +3,8 @@ import Header from "./header";
 import { displayModal } from "../../actions/modal_actions";
 
 const mSTP = state => ({
-  currentUserId: state.session.currentUserId
+  signedIn: state.session.isAuthenticated,
+  currentUser: state.session.user
 })
 
 const mDTP = dispatch => ({
