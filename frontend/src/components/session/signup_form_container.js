@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import SessionForm from "./session_form";
-import { signup, clearErrors } from "../../actions/session_actions";
+import { signup } from "../../actions/session_actions";
 import { hideModal, displayModal } from "../../actions/modal_actions";
 
 const mSTP = ({ errors }) => ({
@@ -12,7 +12,7 @@ const mSTP = ({ errors }) => ({
 const mDTP = dispatch => ({
   action: user => dispatch(signup(user)),
   hideModal: () => dispatch(hideModal()),
-  clearErrors: () => dispatch(clearErrors()),
+  // clearErrors: () => dispatch(clearErrors()),
   otherForm: (
     <div className='other-form-prompt'>
       Already have an account?
