@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import Header from "./header";
 import { displayModal } from "../../actions/modal_actions";
+import { signout } from '../../actions/session_actions'
 
 const mSTP = state => ({
   signedIn: state.session.isAuthenticated,
@@ -8,7 +9,8 @@ const mSTP = state => ({
 })
 
 const mDTP = dispatch => ({
-  displayModal: modal => dispatch(displayModal(modal))
+  displayModal: modal => dispatch(displayModal(modal)),
+  signout: () => dispatch(signout())
 })
 
 export default connect(mSTP, mDTP)(Header)

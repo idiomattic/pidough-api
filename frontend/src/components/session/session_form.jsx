@@ -19,16 +19,16 @@ class SessionForm extends React.Component {
     })
   }
 
-  redirectToFeed() {
-    this.props.history.push('/feed')
-  }
+  // redirectToFeed() {
+  //   this.props.history.push('/feed')
+  // }
 
   handleSubmit(e) {
     e.preventDefault()
     this.props.action(this.state)
       .then(() => this.props.hideModal())
       // .then(() => this.props.clearErrors())
-      .then(() => this.redirectToFeed())
+      // .then(() => this.redirectToFeed())
   }
 
   update(field) {
