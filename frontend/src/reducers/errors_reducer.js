@@ -5,5 +5,5 @@ import sessionErrorsReducer from "./session_errors_reducer";
 // import recipeErrorsReducer from "./recipe_errors_reducer";
 
 export default combineReducers({
-  // session: sessionErrorsReducer,
+  session: sessionErrorsReducer,
 })

@@ -1,8 +1,10 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import '../index.css'
 import HeaderContainer from '../components/header/header_container'
 import Modal from '../components/modal/modal_container'
-import '../index.css'
+// import RecipesIndexContainer from '../components/'
 
 const App = () => {
   return(
@@ -15,8 +17,9 @@ const App = () => {
     {/* </Switch> */}
     <div className='relative pb-10'>
       <Switch>
-        {/* <Route exact path='/' component={RecipesIndexContainer}/>
-        <ProtectedRoute exact path='/recipes/new' component={RecipeFormContainer}/>
+        <Route exact path='/' component={null}/>
+        {/* <Route exact path='/' component={RecipesIndexContainer}/> */}
+        {/* <ProtectedRoute exact path='/recipes/new' component={RecipeFormContainer}/>
         <ProtectedRoute exact path='/recipes/:recipeId' component={RecipeShowContainer}/>
         <ProtectedRoute exact path='/users/:userId' component={UserShowContainer}/> */}
       </Switch>

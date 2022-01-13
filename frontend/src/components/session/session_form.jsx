@@ -37,15 +37,15 @@ class SessionForm extends React.Component {
     })
   }
 
-  // handleErrors() {
-  //   return(
-  //     <ul className='session error-list'>
-  //       {this.props.errors.map((error, i) => (
-  //         <li key={i}>{error}</li>
-  //       ))}
-  //     </ul>
-  //   )
-  // }
+  handleErrors() {
+    return(
+      <ul className='session error-list'>
+        {this.props.errors.map((error, i) => (
+          <li key={i}>{error}</li>
+        ))}
+      </ul>
+    )
+  }
 
   formGreeting() {
     return this.props.formType === 'Sign In' ? 'Welcome Back.' : 'Join PiDough.'
@@ -57,7 +57,7 @@ class SessionForm extends React.Component {
           <br />
           <input className='w-64 mb-3 border-b-2 border-yellow-900 outline-0' 
             type="password" 
-            value={this.state.password} 
+            value={this.state.password2} 
             onChange={this.update('password')} />
         </label>
   }
@@ -86,7 +86,7 @@ class SessionForm extends React.Component {
           </label>
           <br />
           {this.password2()}
-          {/* {this.handleErrors()} */}
+          {this.handleErrors()}
           <br />
           <input className='mb-3 cursor-pointer font-medium text-gray-800 hover:text-black hover:italic' 
             type="submit" 
