@@ -12,13 +12,6 @@ class SessionForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  demoState() {
-    this.setState({
-      username: 'demo',
-      password: 'qwerty'
-    })
-  }
-
   // redirectToFeed() {
   //   this.props.history.push('/feed')
   // }
@@ -58,7 +51,7 @@ class SessionForm extends React.Component {
           <input className='w-64 mb-3 border-b-2 border-yellow-900 outline-0' 
             type="password" 
             value={this.state.password2} 
-            onChange={this.update('password')} />
+            onChange={this.update('password2')} />
         </label>
   }
 
@@ -66,9 +59,7 @@ class SessionForm extends React.Component {
     return(
       <div className=''>
         <h2 className='mb-4 font-medium' >{this.formGreeting()}</h2>
-        {/* <span className='cursor-pointer top-1 right-3' onClick={() => this.props.hideModal()}>&times;</span> */}
         <form className='session-form' onSubmit={this.handleSubmit}>
-          {/* <span className='cursor-pointer absolute top-1 right-3 font-extrabold' onClick={() => this.props.hideModal()}>&times;</span> */}
           <label>Username:
             <br />
             <input className='w-64 mb-3 border-b-2 border-yellow-900 outline-0' 

@@ -25,9 +25,9 @@ router.post("/signup", (req, res) => {
     return res.status(400).json(errors);
   }
 
-  User.findOne({ email: req.body.email }).then(user => {
+  User.findOne({ username: req.body.username }).then(user => {
     if (user) {
-      errors.email = "Email already exists";
+      errors.username = "Username already exists";
       return res.status(400).json(errors);
     } else {
       const newUser = new User({
@@ -62,7 +62,7 @@ router.post('/signin', (req, res) => {
   User.findOne({ username })
     .then(user => {
       if (!user) {
-        return res.status(404).json({ email: 'This user does not exist' });
+        return res.status(404).json({ username: 'This user does not exist' });
       }
 
       bcrypt.compare(password, user.password)
