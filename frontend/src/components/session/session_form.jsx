@@ -27,7 +27,7 @@ class SessionForm extends React.Component {
     e.preventDefault()
     this.props.action(this.state)
       .then(() => this.props.hideModal())
-      .then(() => this.props.clearErrors())
+      // .then(() => this.props.clearErrors())
       .then(() => this.redirectToFeed())
   }
 
