@@ -294,20 +294,23 @@ const RecipeForm = props => {
               placeholder="Title" />
             <br />
             <div className='mb-2'>
-              <label>Instant Yeast
+              <label className="inline-flex items-center">Instant Yeast
                 <input type="radio" 
-                  className="appearance-none w-5 h-5 bg-white border-1 border-yellow-900 rounded-md content-center"
+                  // className="form-checkbox text-yellow-900 rounded-md ml-1 mr-2"
+                  className="form-radio text-yellow-900 rounded-md ml-1 mr-2"
                   name="ferment-choice" 
                   defaultChecked 
                   onChange={() => updateFerment('yeast')}/>
               </label>
-              <label>Preferment
+              <label className="inline-flex items-center">Preferment
                 <input type="radio" 
+                  className="form-radio text-yellow-900 rounded-md ml-1 mr-2"
                   name="ferment-choice" 
                   onChange={() => updateFerment('preferment')}/>
               </label>
-              <label>Sourdough Starter
-                <input type="radio" 
+              <label className="inline-flex items-center">Sourdough Starter
+                <input type="radio"
+                  className="form-radio text-yellow-900 rounded-md"
                   name="ferment-choice" 
                   onChange={() => updateFerment('sourdough')}/>
               </label>
@@ -316,16 +319,27 @@ const RecipeForm = props => {
             <br />
             <div className='bulk'>
               <label>
-                <input type="text" placeholder="Flour" onChange={update('bulk', 'flourType')}/>
-                <input type="number" onChange={update('bulk', 'flourQuantity')} className={ bulkData['flourQuantity'] ? '' : 'required' }/>
+                <input type="text" 
+                  placeholder="Flour"
+                  className="outline-0 w-36 mb-3 border-b-2 border-yellow-900"
+                  onChange={update('bulk', 'flourType')}/>
+                <input type="number" 
+                  className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
+                  onChange={update('bulk', 'flourQuantity')} 
+                  className={ bulkData['flourQuantity'] ? '' : 'required' }/>
               </label>
               <br />
-              <label>Water
-                <input type="number" onChange={update('bulk', 'waterQuantity')} className={ bulkData['waterQuantity'] ? '' : 'required' } />
+              <label className="w-36">Water
+                <input type="number" 
+                  className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
+                  onChange={update('bulk', 'waterQuantity')} 
+                  className={ bulkData['waterQuantity'] ? '' : 'required' } />
               </label>
               <br />
-              <label>Salt
-                <input type="number" onChange={update('bulk', 'saltQuantity')} />
+              <label className="w-36">Salt
+                <input type="number" 
+                  className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
+                  onChange={update('bulk', 'saltQuantity')} />
               </label>
               <br />
             </div>
@@ -336,11 +350,11 @@ const RecipeForm = props => {
             </div>
             <div className='flex '>
               <h3 className="mr-2">This makes </h3>
-              <input type="number" 
+              <input type="text" 
                 onChange={updateNumPizzas()} 
                 placeholder="3" 
-                className="w-6 px-1" />
-              <input type="text" id='size' onChange={updatePizzaSize()} placeholder="14&quot; or 10&quot;x14&quot; " className={ pizzaSize ? '' : 'required' } />
+                className="w-5 px-1" />
+              <input type="text" id='size' onChange={updatePizzaSize()} placeholder="14&quot;, 10&quot;x14&quot;, etc. " className={ pizzaSize ? '' : 'required' } />
               <h3>{` ${pizzasString} with `}</h3>
               <select id='thiccness' onChange={updateThickness()}>
                 <option value="thin" >thin</option>
