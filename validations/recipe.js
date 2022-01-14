@@ -28,7 +28,6 @@ module.exports = function validateRecipeInput(data) {
     errors.originalProportion = 'Something went wrong with the original proportion'
   }
 
-
   return {
     errors,
     isValid: Object.keys(errors).length === 0
