@@ -12,10 +12,6 @@ class SessionForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  // redirectToFeed() {
-  //   this.props.history.push('/feed')
-  // }
-
   handleSubmit(e) {
     e.preventDefault()
     this.props.action(this.state)

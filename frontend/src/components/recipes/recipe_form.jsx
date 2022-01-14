@@ -280,69 +280,88 @@ const RecipeForm = props => {
   let pizzasString = numPizzas > 1 ? 'pizzas' : 'pizza' 
 
   return(
-    <div className='recipe-form-div'>
+    <div className='mt-5'>
       {handleErrors()}
-      <form className='recipe-form' onSubmit={handleSubmit} id='recipe-form'>
-        <input className={ title.length > 1 ? 'recipe-title' : 'recipe-title required' }
-          type="text" 
-          value={title} 
-          onChange={update('title')} 
-          placeholder="Title" />
-        <br />
-        <div className='ferment-choices'>
-          <label>Instant Yeast
-            <input type="radio" name="ferment-choice" defaultChecked onChange={() => updateFerment('yeast')}/>
-          </label>
-          <label>Preferment (Poolish, Biga, etc.)
-            <input type="radio" name="ferment-choice" onChange={() => updateFerment('preferment')}/>
-          </label>
-          <label>Sourdough Starter
-            <input type="radio" name="ferment-choice" onChange={() => updateFerment('sourdough')}/>
-          </label>
+      <div className=" bg-white max-w-6xl mx-auto px-4 border-2 border-yellow-900 rounded-2xl">
+        <div className="flex justify-between py-4 mx-auto" >
+          <form className='border-r-2 border-yellow-900 w-1/2 pr-4'
+            onSubmit={handleSubmit} 
+            id='recipe-form'>
+            <input className="font-semibold text-2xl outline-0 w-full mb-3 border-b-2 border-yellow-900"
+              type="text" 
+              value={title} 
+              onChange={update('title')} 
+              placeholder="Title" />
+            <br />
+            <div className='mb-2'>
+              <label>Instant Yeast
+                <input type="radio" 
+                  className="appearance-none w-5 h-5 bg-white border-1 border-yellow-900 rounded-md content-center"
+                  name="ferment-choice" 
+                  defaultChecked 
+                  onChange={() => updateFerment('yeast')}/>
+              </label>
+              <label>Preferment
+                <input type="radio" 
+                  name="ferment-choice" 
+                  onChange={() => updateFerment('preferment')}/>
+              </label>
+              <label>Sourdough Starter
+                <input type="radio" 
+                  name="ferment-choice" 
+                  onChange={() => updateFerment('sourdough')}/>
+              </label>
+            </div>
+            {fermentedInputs()}
+            <br />
+            <div className='bulk'>
+              <label>
+                <input type="text" placeholder="Flour" onChange={update('bulk', 'flourType')}/>
+                <input type="number" onChange={update('bulk', 'flourQuantity')} className={ bulkData['flourQuantity'] ? '' : 'required' }/>
+              </label>
+              <br />
+              <label>Water
+                <input type="number" onChange={update('bulk', 'waterQuantity')} className={ bulkData['waterQuantity'] ? '' : 'required' } />
+              </label>
+              <br />
+              <label>Salt
+                <input type="number" onChange={update('bulk', 'saltQuantity')} />
+              </label>
+              <br />
+            </div>
+            <br />
+            <div className='extra-inputs-container'>
+              {mapRespectiveExtraItems('bulk')}
+              <h3 onClick={addExtraInputField} className='add-input-button'>+</h3>
+            </div>
+            <div className='flex '>
+              <h3 className="mr-2">This makes </h3>
+              <input type="number" 
+                onChange={updateNumPizzas()} 
+                placeholder="3" 
+                className="w-6 px-1" />
+              <input type="text" id='size' onChange={updatePizzaSize()} placeholder="14&quot; or 10&quot;x14&quot; " className={ pizzaSize ? '' : 'required' } />
+              <h3>{` ${pizzasString} with `}</h3>
+              <select id='thiccness' onChange={updateThickness()}>
+                <option value="thin" >thin</option>
+                <option value="thick" >thick</option>
+              </select>
+              <h3> crust.</h3>
+            </div>
+            <br />
+          </form>
+          <div>
+            <textarea form='recipe-form'
+              type='text'
+              value={body}
+              onChange={update('body')}
+              className='flex flex-col'
+              placeholder="Share your method..." />
+            <br />
+            {allowSubmit()}
+          </div>
         </div>
-        {fermentedInputs()}
-        <br />
-        <div className='bulk'>
-          <label>
-            <input type="text" placeholder="Flour" onChange={update('bulk', 'flourType')}/>
-            <input type="number" onChange={update('bulk', 'flourQuantity')} className={ bulkData['flourQuantity'] ? '' : 'required' }/>
-          </label>
-          <br />
-          <label>Water
-            <input type="number" onChange={update('bulk', 'waterQuantity')} className={ bulkData['waterQuantity'] ? '' : 'required' } />
-          </label>
-          <br />
-          <label>Salt
-            <input type="number" onChange={update('bulk', 'saltQuantity')} />
-          </label>
-          <br />
-        </div>
-        <br />
-        <div className='extra-inputs-container'>
-          {mapRespectiveExtraItems('bulk')}
-          <h3 onClick={addExtraInputField} className='add-input-button'>+</h3>
-        </div>
-        <div className='portions-section'>
-          <h3>This makes </h3>
-          <input type="number" id='number-of-portions' onChange={updateNumPizzas()} placeholder="3" className={ numPizzas ? '' : 'required' } />
-          <input type="text" id='size' onChange={updatePizzaSize()} placeholder="14&quot; or 10&quot;x14&quot; " className={ pizzaSize ? '' : 'required' } />
-          <h3>{` ${pizzasString} with `}</h3>
-          <select id='thiccness' onChange={updateThickness()}>
-            <option value="thin" >thin</option>
-            <option value="thick" >thick</option>
-          </select>
-          <h3> crust.</h3>
-        </div>
-        <br />
-      </form>
-      <textarea form='recipe-form'
-        type='text'
-        value={body}
-        onChange={update('body')}
-        className='recipe-body'
-        placeholder="Share your method..." />
-      <br />
-      {allowSubmit()}
+      </div>
     </div>
   )
 }

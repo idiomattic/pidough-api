@@ -22,7 +22,7 @@ const Header = props => {
     </div>
   }
   return (
-    <nav className='bg-white border-b-2 border-yellow-900 border-opacity-90'>
+    <nav className='bg-white border-b-2 border-yellow-900'>
       <div className='max-w-6xl mx-auto px-4'>
         <header className='flex justify-between h-10 mt-7 mb-4'>
           <h2 className='font-bold text-3xl' onClick={() => history.push({pathname: '/'})}>PiDough</h2>
