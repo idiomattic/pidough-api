@@ -16,9 +16,9 @@ module.exports = function validateRecipeInput(data) {
     errors.authorId = 'Something went wrong with the author id'
   }
 
-  // if (Object.keys(data.data).length === 0) {
-  //   errors.data = 'Recipe data cannot be empty'
-  // }
+  if (Object.keys(data.data).length === 0) {
+    errors.data = 'Recipe data cannot be empty'
+  }
   
   if (Validator.isEmpty(data.body)) {
     errors.body = 'Body is required'

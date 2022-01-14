@@ -12,7 +12,7 @@ const RecipeSchema = new Schema({
   },
   data: {
     type: Object,
-    // required: true
+    required: true
   },
   body: {
     type: String,

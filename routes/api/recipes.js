@@ -34,18 +34,16 @@ router.post('/create', passport.authenticate('jwt', { session: false }),
 })
 
 router.get('/', (req, res) => {
-  if (!req.body.recipeId) { // index
-    Recipe.find()
-      .then(recipes => res.json(recipes))
-      .catch(err => res.status(404).json({ noRecipesFound: 'No recipes found.'}))
-  } else { // show
-    Recipe.findById(req.body.recipeId)
-      .then(recipe => res.json(recipe))
-      .catch(err => res.status(404).json({ noRecipeFound: 'No recipe found.'}))
-  }
+  Recipe.find()
+    .then(recipes => res.json(recipes))
+    .catch(err => res.status(404).json({ noRecipesFound: 'No recipes found.'}))
 })
 
-// router.get('/', (req, res) => {
-// })
+router.get('/:recipeId', (req, res) => {
+  const { recipeId } = req.params
+  Recipe.findById(recipeId)
+      .then(recipe => res.json(recipe))
+      .catch(err => res.status(404).json({ noRecipeFound: 'No recipe found.'}))
+})
 
 module.exports = router
