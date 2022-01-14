@@ -4,6 +4,7 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import '../index.css'
 import HeaderContainer from '../components/header/header_container'
 import Modal from '../components/modal/modal_container'
+import CreateRecipeFormContainer from '../components/recipes/create_recipe_form_container'
 // import RecipesIndexContainer from '../components/'
 
 const App = () => {
@@ -18,9 +19,9 @@ const App = () => {
     <div className='relative pb-10'>
       <Switch>
         <Route exact path='/' component={null}/>
+        <ProtectedRoute exact path='/recipes/create' component={CreateRecipeFormContainer}/>
         {/* <Route exact path='/' component={RecipesIndexContainer}/> */}
-        {/* <ProtectedRoute exact path='/recipes/new' component={RecipeFormContainer}/>
-        <ProtectedRoute exact path='/recipes/:recipeId' component={RecipeShowContainer}/>
+        {/* <ProtectedRoute exact path='/recipes/:recipeId' component={RecipeShowContainer}/>
         <ProtectedRoute exact path='/users/:userId' component={UserShowContainer}/> */}
       </Switch>
     </div>
