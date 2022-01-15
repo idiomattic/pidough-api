@@ -289,36 +289,31 @@ const RecipeForm = props => {
       .filter(input => section === 'preferment' ? input.preferment : !input.preferment)
       .map((input, i) => {
         let switchSectionButton = (section === 'preferment')
-          ? <label>Bulk
-              <input className='extra-type-radios'
-                type="radio"
-                name={"extra" + input.originalIndex + "-type-choice"}
-                defaultChecked={section === 'bulk'}
-                onChange={() => updateExtraInputPos('bulk', input)}/>
-            </label>
-          : <label>Preferment
-              <input className='extra-type-radios'
-                type="radio"
-                name={"extra" + input.originalIndex + "-type-choice"}
-                defaultChecked={section === 'preferment'}
-                onChange={() => updateExtraInputPos('preferment', input)} />
-            </label>
+          ? <p className='cursor-pointer font-light text-gray-600 hover:text-black hover:italic'
+              onChange={() => updateExtraInputPos('bulk', input)}>Move to Bulk</p>
+          : <p className="cursor-pointer font-light text-gray-600 hover:text-black hover:italic"
+              onChange={() => updateExtraInputPos('preferment', input)}>Move to Preferment</p>
         return (
-          <div className='extra-input' key={i}>
-            <input type="text"
-              placeholder='Olive Oil, Sugar, etc.'
-              onChange={update('extra', `extra${i}Name`, input)}
-              value={extraInputFields[input.originalIndex]['extraName']}
-              />
-            <input type="number"
-              onChange={update('extra', `extra${i}Quantity`, input)}
-              value={extraInputFields[input.originalIndex]['extraQuantity']}
-              />
-            <div className='extra-type-choices'>
-              {switchSectionButton}
+          <div className='mt-2 mb-4' key={i}>
+            <div className="w-full grid grid-cols-2">
+              <input type="text" 
+                placeholder='Olive Oil, Sugar, etc.'
+                className="outline-0 w-11/12 mb-3 border-b-2 border-yellow-900 mr-2"
+                onChange={update('extra', `extra${i}Name`, input)}
+                value={extraInputFields[input.originalIndex]['extraName']}/>
+              <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
+                <input type="number" 
+                  className="outline-0 w-20"
+                  onChange={update('extra', `extra${i}Quantity`, input)}
+                  value={extraInputFields[input.originalIndex]['extraQuantity']} />
+                <p className="italic">grams</p>
+              </div>
             </div>
-            <h3 onClick={() => removeExtraInputField(input.idx)} className="remove-input-button">-</h3>
-            <br />
+            <div className='w-full grid grid-cols-2'>
+              {switchSectionButton}
+              <h3 onClick={() => removeExtraInputField(input.idx)}
+                className="w-40 text-right cursor-pointer font-medium text-gray-800 hover:text-black hover:italic">Remove</h3>
+            </div>
           </div>
       )}))
   }
@@ -369,26 +364,36 @@ const RecipeForm = props => {
                   placeholder="Flour"
                   className="outline-0 w-11/12 mb-3 border-b-2 border-yellow-900 mr-2"
                   onChange={update('bulk', 'flourType')}/>
-                <input type="number" 
-                  className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
-                  onChange={update('bulk', 'flourQuantity')} />
+                <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
+                  <input type="number" 
+                    className="outline-0 w-20"
+                    onChange={update('bulk', 'flourQuantity')} />
+                  <p className="italic">grams</p>
+                </div>
               </div>
               <div className="w-full grid grid-cols-2">
                 <p className="inline-block w-20">Water</p>
-                <input type="number" 
-                  className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
-                  onChange={update('bulk', 'waterQuantity')} />
+                <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
+                  <input type="number" 
+                    className="outline-0 w-20 "
+                    onChange={update('bulk', 'waterQuantity')} />
+                  <p className="italic">grams</p>
+                </div>
               </div>
               <div className="w-full grid grid-cols-2">
                 <p className="inline-block w-20">Salt</p>
-                <input type="number" 
-                  className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
-                  onChange={update('bulk', 'saltQuantity')} />
+                <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
+                  <input type="number" 
+                    className="outline-0 w-20 "
+                    onChange={update('bulk', 'saltQuantity')} />
+                  <p className="italic">grams</p>
+                </div>
               </div>
             </div>
-            <div className='extra-inputs-container'>
+            <div className='mb-5 mt-2'>
               {mapRespectiveExtraItems('bulk')}
-              <h3 onClick={addExtraInputField} className='add-input-button'>+</h3>
+              <h3 onClick={addExtraInputField}
+                className='cursor-pointer font-light text-gray-600 hover:text-black hover:italic'>Add an ingredient</h3>
             </div>
             <div className='flex flex-wrap items-center'>
               <h3 className="mr-2 whitespace-nowrap">This makes </h3>
@@ -407,7 +412,6 @@ const RecipeForm = props => {
               </select>
               <h3 className="-ml-1"> crust.</h3>
             </div>
-            <br />
           </form>
         </div>
       </div>
