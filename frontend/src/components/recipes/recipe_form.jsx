@@ -109,10 +109,10 @@ const RecipeForm = props => {
     }
     const doughFactor = parseInt(numPizzas) * pizzaArea * (crustThickness === 'thin' ? 1 : 2.2)
     props.action({
-      author_id: author.id,
+      authorId: author.id,
       title,
       body,
-      original_proportion: `This recipe was originally made for ${numPizzas} ${pizzaSizeString} ${crustThickness}-crust ${pie}.`,
+      originalProportion: `This recipe was originally made for ${numPizzas} ${pizzaSizeString} ${crustThickness}-crust ${pie}.`,
       data: buildData(doughFactor)
     })
       .then(res => props.history.push(`/recipes/${res.recipe.id}`))
