@@ -95,14 +95,21 @@ class RecipeShow extends React.Component {
     let fermentData = Object.keys(ferment).length === 0
       ? null
       : <ul>
-          {Object.keys(ferment).map((key, i) => (
+          {Object.keys(ferment).map((key, i) => {
+            let val
+            if (parseFloat(ferment[key])) {
+              val = Math.round(ferment[key] * 10) / 10
+            } else {
+              val = ferment[key]
+            }
+            return (
             <li key={i}>
               <div className="w-full grid grid-cols-2">
                 <p>{this.changeKeyName(key)}:</p>
-                <p>{ferment[key]}</p>
+                <p>{val}</p>
               </div>
             </li>
-          ))}
+          )})}
         </ul>
     let bulkData = Object.keys(bulk).length === 0
       ? null
@@ -156,31 +163,32 @@ class RecipeShow extends React.Component {
           {/* onClick={() => this.redirectToShow(recipe.authorId)} */}
           <p className="my-2 italic">{recipe.originalProportion}</p>
         </div>
-        <div className='flex flex-wrap justify-between py-4 max-w-[30rem]'>
-          <div className="flex flex-col max-w-full justify-between items-center p-4 min-h-[25rem] bg-white  border-2 border-yellow-900 rounded-2xl">
-            <div className='flex flex-wrap items-center'>
+        <div className='flex flex-wrap justify-center -mt-4 py-4 -ml-10'>
+          <div className="flex flex-col max-w-md justify-between mt-4 mb-2 ml-10 items-center p-4 min-h-[25rem] bg-white border-2 border-yellow-900 rounded-2xl">
+            <div className='flex flex-wrap items-center font-semibold'>
               <h3 className="mr-2 whitespace-nowrap">I want to make </h3>
               <input type="number"
                 onChange={this.update('numPizzas')}
                 value={this.state.numPizzas}
-                className="px-1 outline-0 w-10 mr-2 border-b-2 border-yellow-900" />
+                className="px-1 outline-0 w-10 mr-2 border-b-2 border-yellow-900 font-semibold" />
               <input type="text"
                 onChange={this.update('pizzaSize')}
                 value={this.state.pizzaSize}
-                className="px-1 text-center outline-0 w-20 mr-2 border-b-2 border-yellow-900" />
+                className="px-1 text-center outline-0 w-20 mr-2 border-b-2 border-yellow-900 font-semibold" />
               <h3>{` ${pizzasString} with `}</h3>
-              <select id='thiccness' onChange={this.update('crustThickness')}>
+              <select className="font-semibold" onChange={this.update('crustThickness')}>
                 <option value="thin" >thin</option>
                 <option value="thick" >thick</option>
               </select>
               <h3> crust.</h3>
             </div>
-            <div className="data-section">
+            <div className="w-full">
               {this.renderRecipeData()}
             </div>
           </div>
-          
-          <p className='recipe-body'>{recipe.body}</p>
+          <div className="bg-white min-h-[25rem] p-4 max-w-md w-full mt-4 mb-2 ml-10 border-2 border-yellow-900 rounded-2xl">
+            <p className='w-full h-full'>{recipe.body}</p>
+          </div>
 
         </div>
         
