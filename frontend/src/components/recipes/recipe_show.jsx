@@ -72,7 +72,7 @@ class RecipeShow extends React.Component {
     })
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     let {recipeId, recipe, getRecipe, history} = this.props
     getRecipe(recipeId)
       .then(res => {
@@ -84,7 +84,45 @@ class RecipeShow extends React.Component {
 
   renderRecipeData() {
     let {recipeData} = this.state
-    return JSON.stringify(recipeData)
+    let ferment = recipeData?.ferment || {}
+    let bulk = recipeData?.bulk || {}
+    let extra = recipeData?.extra || {}
+    let fermentData = Object.keys(ferment).length === 0
+      ? null
+      : <ul>
+          {Object.keys(ferment).map((key, i) => (
+            <li key={i}>
+              {`${key}: ${ferment[key]}`}
+            </li>
+          ))}
+        </ul>
+    let bulkData = Object.keys(bulk).length === 0
+      ? null
+      : <ul>
+          {Object.keys(bulk).map((key, i) => (
+            <li key={i}>
+              {`${key}: ${bulk[key]}`}
+            </li>
+          ))}
+        </ul>
+    let extraData = Object.keys(extra).length === 0
+      ? null
+      : <ul>
+          {Object.keys(extra).map((key, i) => (
+            <li key={i}>
+              {`${key}: ${extra[key]}`}
+            </li>
+          ))}
+        </ul>
+    
+    return <div className="max-w-full">
+      {fermentData}
+      {extraData}
+      {bulkData}
+    </div>
+    // <p className="max-w-100%">
+    //   {JSON.stringify(recipeData)}
+    //   </p> 
   }
   
   render() {
@@ -104,23 +142,34 @@ class RecipeShow extends React.Component {
           {/* onClick={() => this.redirectToShow(recipe.authorId)} */}
           <p className="my-2 italic">{recipe.originalProportion}</p>
         </div>
-        <p className='recipe-body'>{recipe.body}</p>
-        <div className='show portions-section'>
-          <h3>I want to make </h3>
-          <input type="number" id='number-of-portions' onChange={this.update('numPizzas')} value={this.state.numPizzas} />
-          <input type="text" id='size' onChange={this.update('pizzaSize')} value={this.state.pizzaSize} />
-          <h3>{` ${pizzasString} with `}</h3>
-          <select id='thiccness' onChange={this.update('crustThickness')}>
-            <option value="thin" >thin</option>
-            <option value="thick" >thick</option>
-          </select>
-          <h3> crust.</h3>
+        <div className='flex flex-wrap justify-between py-4 max-w-[30rem]'>
+          <div className="flex flex-col max-w-full justify-between items-center p-4 min-h-[25rem] bg-white  border-2 border-yellow-900 rounded-2xl">
+            <div className='flex flex-wrap items-center'>
+              <h3 className="mr-2 whitespace-nowrap">I want to make </h3>
+              <input type="number"
+                onChange={this.update('numPizzas')}
+                value={this.state.numPizzas}
+                className="px-1 outline-0 w-10 mr-2 border-b-2 border-yellow-900" />
+              <input type="text"
+                onChange={this.update('pizzaSize')}
+                value={this.state.pizzaSize}
+                className="px-1 text-center outline-0 w-20 mr-2 border-b-2 border-yellow-900" />
+              <h3>{` ${pizzasString} with `}</h3>
+              <select id='thiccness' onChange={this.update('crustThickness')}>
+                <option value="thin" >thin</option>
+                <option value="thick" >thick</option>
+              </select>
+              <h3> crust.</h3>
+            </div>
+            <div className="data-section">
+              {this.renderRecipeData()}
+            </div>
+          </div>
+          
+          <p className='recipe-body'>{recipe.body}</p>
+
         </div>
-        <br />
-        <div className="data-section">
-          {this.renderRecipeData()}
-        </div>
-        <br />
+        
         {/* <div className='recipe-footer'>
           <div className='left-buttons'>
             <div className='comment-nav'>
