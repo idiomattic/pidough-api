@@ -94,21 +94,17 @@ class RecipeShow extends React.Component {
     }
     let pizzasString = this.state.numPizzas > 1 ? 'pizzas' : 'pizza'
     return(
-      <div className='recipe-show'>
-        <div className='title-wrapper'>
-          <h2 className='recipe-title'>{recipe.title}</h2>
-          {/* {this.isOwner()} */}
-        </div>
-        <br />
-        <div className='recipe-info'>
-          <div className='author' >{recipe.authorName}</div>
+      <div className='w-full mx-auto px-4'>
+        <div className="mt-7 bg-white max-w-2xl px-4 mx-auto border-2 border-yellow-900 rounded-2xl">
+          <div className=''>
+            <h2 className='mt-2 text-xl font-bold'>{recipe.title}</h2>
+            {/* {this.isOwner()} */}
+          </div>
+          <div>{recipe.authorName}</div>
           {/* onClick={() => this.redirectToShow(recipe.authorId)} */}
-          <br />
-          <p className="original-proportions">{recipe.originalProportion}</p>
+          <p className="my-2 italic">{recipe.originalProportion}</p>
         </div>
-        <br />
         <p className='recipe-body'>{recipe.body}</p>
-        <br />
         <div className='show portions-section'>
           <h3>I want to make </h3>
           <input type="number" id='number-of-portions' onChange={this.update('numPizzas')} value={this.state.numPizzas} />
