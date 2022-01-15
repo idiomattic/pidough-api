@@ -4,8 +4,8 @@ import { getRecipe } from "../../actions/recipe_actions";
 // import { displayModal } from "../../actions/modal_actions";
 
 const mSTP = (state, {match}) => {
-  const recipeId = parseInt(match.params.recipeId)
-  let recipe = state.entities.recipes[recipeId]
+  const recipeId = match.params.recipeId
+  let recipe = state.entities.recipes[recipeId] || {}
   return({
     signedIn: state.session.isAuthenticated || state.session.isSignedIn,
     currentUser: state.session.user,

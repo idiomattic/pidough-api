@@ -5,11 +5,6 @@ class RecipeShow extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      likeCount: this.props.likeCount,
-      like: {
-        liker_id: props.currentUser.id,
-        recipe_id: props.recipeId
-      },
       doughFactor: 113.1,
       numPizzas: 1,
       pizzaSize: '12"',
@@ -82,7 +77,6 @@ class RecipeShow extends React.Component {
     getRecipe(recipeId)
       .then(res => {this.updateRecipeAmounts(res.recipe.data)
         this.setState({ unitRecipeData: res.recipe.data })
-        this.setLikeCount()
       },
         err => history.push('/feed'))
   }
