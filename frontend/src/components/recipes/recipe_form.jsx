@@ -129,23 +129,36 @@ const RecipeForm = props => {
     if (whichFerment === 'yeast') {
       formFermentContent = (
         <label id='yeast'>Instant Yeast
-          <input type="number" step="0.1" className='ferment-input' form='recipe-form' onChange={update('ferment', 'yeastQuantity')}/>
+          <input type="number" step="0.1"
+            className='outline-0 w-10 mb-3 border-b-2 border-yellow-900'
+            form='recipe-form'
+            onChange={update('ferment', 'yeastQuantity')}/>
         </label>
       )
     } else if (whichFerment === 'preferment') {
       formFermentContent = (
         <div className='preferment-options'>
           <label>
-            <input type="text" placeholder="Flour" onChange={update('ferment', 'flourType')}/>
-            <input type="number" onChange={update('ferment', 'flourQuantity')}/>
+            <input type="text"
+              className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
+              placeholder="Flour"
+              onChange={update('ferment', 'flourType')}/>
+            <input type="number"
+              className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
+              onChange={update('ferment', 'flourQuantity')}/>
           </label>
           <br />
           <label>Water
-            <input type="number" onChange={update('ferment', 'waterQuantity')}/>
+            <input type="number"
+              className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
+              onChange={update('ferment', 'waterQuantity')}/>
           </label>
           <br />
           <label>Yeast
-            <input type="number" step="0.1" onChange={update('ferment', 'yeastQuantity')}/>
+            <input type="number"
+              className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
+              step="0.1"
+              onChange={update('ferment', 'yeastQuantity')}/>
           </label>
           <br />
         </div>
@@ -154,11 +167,17 @@ const RecipeForm = props => {
       formFermentContent = (
         <div>
           <label>Hydration Percentage (%)
-            <input type="number" min="1" max="100" id="sourdough-hydration-percent" onChange={update('ferment', 'sourdoughHydration')}/>
+            <input type="number" min="1" max="100"
+              className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
+              id="sourdough-hydration-percent"
+              onChange={update('ferment', 'sourdoughHydration')}/>
           </label>
           <br />
           <label>Mass (grams)
-            <input type="number" id="sourdough-mass" onChange={update('ferment', 'sourdoughQuantity')}/>
+            <input type="number"
+              className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
+              id="sourdough-mass"
+              onChange={update('ferment', 'sourdoughQuantity')}/>
           </label>
         </div>
       )
@@ -252,10 +271,18 @@ const RecipeForm = props => {
       .map((input, i) => {
         let switchSectionButton = (section === 'preferment')
           ? <label>Bulk
-              <input className='extra-type-radios' type="radio" name={"extra" + input.originalIndex + "-type-choice"} defaultChecked={section === 'bulk'} onChange={() => updateExtraInputPos('bulk', input)}/>
+              <input className='extra-type-radios'
+                type="radio"
+                name={"extra" + input.originalIndex + "-type-choice"}
+                defaultChecked={section === 'bulk'}
+                onChange={() => updateExtraInputPos('bulk', input)}/>
             </label>
           : <label>Preferment
-              <input className='extra-type-radios' type="radio" name={"extra" + input.originalIndex + "-type-choice"} defaultChecked={section === 'preferment'} onChange={() => updateExtraInputPos('preferment', input)} />
+              <input className='extra-type-radios'
+                type="radio"
+                name={"extra" + input.originalIndex + "-type-choice"}
+                defaultChecked={section === 'preferment'}
+                onChange={() => updateExtraInputPos('preferment', input)} />
             </label>
         return (
           <div className='extra-input' key={i}>
@@ -277,14 +304,14 @@ const RecipeForm = props => {
       )}))
   }
 
-  let pizzasString = numPizzas > 1 ? 'pizzas' : 'pizza' 
+  let pizzasString = (numPizzas > 1 || !numPizzas) ? 'pizzas' : 'pizza' 
 
   return(
-    <div className='mt-5'>
+    <div className='mt-5 w-full mx-auto px-4'>
       {handleErrors()}
-      <div className=" bg-white max-w-6xl mx-auto px-4 border-2 border-yellow-900 rounded-2xl">
-        <div className="flex justify-between py-4 mx-auto" >
-          <form className='border-r-2 border-yellow-900 w-1/2 pr-4'
+      <div className="flex bg-white max-w-md px-4 border-2 border-yellow-900 rounded-2xl">
+        <div className="flex flex-wrap justify-between py-4 max-w-2/5 mx-auto" >
+          <form className='w-full'
             onSubmit={handleSubmit} 
             id='recipe-form'>
             <input className="font-semibold text-2xl outline-0 w-full mb-3 border-b-2 border-yellow-900"
@@ -294,7 +321,7 @@ const RecipeForm = props => {
               placeholder="Title" />
             <br />
             <div className='mb-2'>
-              <label className="inline-flex items-center">Instant Yeast
+              <label className="inline-flex items-center whitespace-nowrap">Instant Yeast
                 <input type="radio" 
                   // className="form-checkbox text-yellow-900 rounded-md ml-1 mr-2"
                   className="form-radio text-yellow-900 rounded-md ml-1 mr-2"
@@ -302,13 +329,13 @@ const RecipeForm = props => {
                   defaultChecked 
                   onChange={() => updateFerment('yeast')}/>
               </label>
-              <label className="inline-flex items-center">Preferment
+              <label className="inline-flex items-center whitespace-nowrap">Preferment
                 <input type="radio" 
                   className="form-radio text-yellow-900 rounded-md ml-1 mr-2"
                   name="ferment-choice" 
                   onChange={() => updateFerment('preferment')}/>
               </label>
-              <label className="inline-flex items-center">Sourdough Starter
+              <label className="inline-flex items-center whitespace-nowrap">Sourdough Starter
                 <input type="radio"
                   className="form-radio text-yellow-900 rounded-md"
                   name="ferment-choice" 
@@ -318,25 +345,23 @@ const RecipeForm = props => {
             {fermentedInputs()}
             <br />
             <div className='bulk'>
-              <label>
+              <div className="w-full">
                 <input type="text" 
                   placeholder="Flour"
-                  className="outline-0 w-36 mb-3 border-b-2 border-yellow-900"
+                  className="outline-0 w-20 mb-3 border-b-2 border-yellow-900 mr-2"
                   onChange={update('bulk', 'flourType')}/>
                 <input type="number" 
                   className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
-                  onChange={update('bulk', 'flourQuantity')} 
-                  className={ bulkData['flourQuantity'] ? '' : 'required' }/>
-              </label>
-              <br />
-              <label className="w-36">Water
+                  onChange={update('bulk', 'flourQuantity')} />
+              </div>
+              {/* <br /> */}
+              <label className="inline-block w-20">Water
                 <input type="number" 
                   className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
-                  onChange={update('bulk', 'waterQuantity')} 
-                  className={ bulkData['waterQuantity'] ? '' : 'required' } />
+                  onChange={update('bulk', 'waterQuantity')} />
               </label>
               <br />
-              <label className="w-36">Salt
+              <label className="inline-block w-20">Salt
                 <input type="number" 
                   className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
                   onChange={update('bulk', 'saltQuantity')} />
@@ -348,32 +373,37 @@ const RecipeForm = props => {
               {mapRespectiveExtraItems('bulk')}
               <h3 onClick={addExtraInputField} className='add-input-button'>+</h3>
             </div>
-            <div className='flex '>
-              <h3 className="mr-2">This makes </h3>
-              <input type="text" 
+            <div className='flex flex-wrap items-center'>
+              <h3 className="mr-2 whitespace-nowrap">This makes </h3>
+              <input type="number" 
                 onChange={updateNumPizzas()} 
                 placeholder="3" 
-                className="w-5 px-1" />
-              <input type="text" id='size' onChange={updatePizzaSize()} placeholder="14&quot;, 10&quot;x14&quot;, etc. " className={ pizzaSize ? '' : 'required' } />
-              <h3>{` ${pizzasString} with `}</h3>
-              <select id='thiccness' onChange={updateThickness()}>
+                className="px-1 outline-0 w-10 mr-2 border-b-2 border-yellow-900" />
+              <input type="text" id='size'
+                onChange={updatePizzaSize()}
+                placeholder="14&quot;, 10&quot;x14&quot;, etc. "
+                className="outline-0 w-32 border-b-2 border-yellow-900 mr-2" />
+              <h3 className="whitespace-nowrap mr-2">{` ${pizzasString} with `}</h3>
+              <select className="form-select pl-0 pr-6" onChange={updateThickness()}>
                 <option value="thin" >thin</option>
                 <option value="thick" >thick</option>
               </select>
-              <h3> crust.</h3>
+              <h3 className="-ml-1"> crust.</h3>
             </div>
             <br />
           </form>
-          <div>
-            <textarea form='recipe-form'
-              type='text'
-              value={body}
-              onChange={update('body')}
-              className='flex flex-col'
-              placeholder="Share your method..." />
-            <br />
-            {allowSubmit()}
-          </div>
+        </div>
+      </div>
+      <div className=" bg-white px-4 max-w-md border-2 border-yellow-900 rounded-2xl">
+        <div className="w-96 pl-4">
+          <textarea form='recipe-form'
+            type='text'
+            value={body}
+            onChange={update('body')}
+            className='flex flex-col outline-0 p-2 w-full h-5/6'
+            placeholder="Share your method..." />
+          <br />
+          {allowSubmit()}
         </div>
       </div>
     </div>
