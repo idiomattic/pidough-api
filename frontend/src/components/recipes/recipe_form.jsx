@@ -52,9 +52,9 @@ const RecipeForm = props => {
   
   const allowSubmit = () => {
     if (title.length > 0 && (Object.keys(fermentData).length > 0) && (Object.keys(bulkData).length > 0)) {
-      return <input type="submit" form='recipe-form' className='publish' value='Publish' />
+      return <input type="submit" form='recipe-form' className='text-right cursor-pointer font-medium text-gray-600 hover:text-black hover:italic' value='Publish' />
     } else {
-      return <input type="submit" form='story-form' className='disabled publish' value='Publish' disabled/>
+      return <input type="submit" form='story-form' className='text-right font-medium text-gray-600' value='Publish' disabled/>
     }
   }
 
@@ -321,11 +321,11 @@ const RecipeForm = props => {
   let pizzasString = (numPizzas > 1 || !numPizzas) ? 'pizzas' : 'pizza' 
 
   return(
-    <div className='mt-5 w-full mx-auto px-4'>
+    <div className='flex flex-wrap -mt-2 w-full mx-auto px-4'>
       {handleErrors()}
-      <div className="flex bg-white max-w-md px-4 border-2 border-yellow-900 rounded-2xl">
-        <div className="flex flex-wrap justify-between py-4 max-w-2/5 mx-auto" >
-          <form className='w-full'
+      <div className="flex mt-7 bg-white max-w-md px-4 mx-auto border-2 border-yellow-900 rounded-2xl ">
+        <div className="flex flex-wrap justify-between py-4 " >
+          <form className='w-full '
             onSubmit={handleSubmit} 
             id='recipe-form'>
             <input className="font-semibold text-2xl outline-0 w-full mb-3 border-b-2 border-yellow-900"
@@ -415,15 +415,14 @@ const RecipeForm = props => {
           </form>
         </div>
       </div>
-      <div className=" bg-white px-4 max-w-md border-2 border-yellow-900 rounded-2xl">
-        <div className="w-96 pl-4">
+      <div className=" bg-white w-full max-w-md mx-auto mt-7 border-2 border-yellow-900 rounded-2xl">
+        <div className="w-full h-full p-4 flex flex-col justify-between">
           <textarea form='recipe-form'
             type='text'
             value={body}
             onChange={update('body')}
-            className='flex flex-col outline-0 p-2 w-full h-5/6'
+            className='flex flex-col outline-0 w-full h-5/6 resize-none'
             placeholder="Share your method..." />
-          <br />
           {allowSubmit()}
         </div>
       </div>
