@@ -82,6 +82,11 @@ class RecipeShow extends React.Component {
         err => history.push('/feed'))
   }
 
+  changeKeyName(key) {
+    const result = key.replace(/([A-Z])/g, " $1");
+    return result.charAt(0).toUpperCase() + result.slice(1);
+  }
+
   renderRecipeData() {
     let {recipeData} = this.state
     let ferment = recipeData?.ferment || {}
@@ -92,7 +97,10 @@ class RecipeShow extends React.Component {
       : <ul>
           {Object.keys(ferment).map((key, i) => (
             <li key={i}>
-              {`${key}: ${ferment[key]}`}
+              <div className="w-full grid grid-cols-2">
+                <p>{this.changeKeyName(key)}:</p>
+                <p>{ferment[key]}</p>
+              </div>
             </li>
           ))}
         </ul>
@@ -101,7 +109,10 @@ class RecipeShow extends React.Component {
       : <ul>
           {Object.keys(bulk).map((key, i) => (
             <li key={i}>
-              {`${key}: ${bulk[key]}`}
+                <div className="w-full grid grid-cols-2">
+                  <p>{this.changeKeyName(key)}:</p>
+                  <p>{bulk[key]}</p>
+                </div>
             </li>
           ))}
         </ul>
@@ -110,7 +121,10 @@ class RecipeShow extends React.Component {
       : <ul>
           {Object.keys(extra).map((key, i) => (
             <li key={i}>
-              {`${key}: ${extra[key]}`}
+              <div className="w-full grid grid-cols-2">
+                <p>{this.changeKeyName(key)}:</p>
+                <p>{extra[key]}</p>
+              </div>
             </li>
           ))}
         </ul>
