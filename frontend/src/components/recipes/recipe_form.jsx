@@ -323,7 +323,7 @@ const RecipeForm = props => {
   return(
     <div className='flex flex-wrap -mt-2 w-full mx-auto px-4'>
       {handleErrors()}
-      <div className="flex mt-7 bg-white max-w-md px-4 mx-auto border-2 border-yellow-900 rounded-2xl ">
+      <div className="flex mt-7 min-h-[25rem] bg-white max-w-md px-4 mx-auto border-2 border-yellow-900 rounded-2xl ">
         <div className="flex flex-wrap justify-between py-4 " >
           <form className='w-full '
             onSubmit={handleSubmit} 
@@ -415,7 +415,7 @@ const RecipeForm = props => {
           </form>
         </div>
       </div>
-      <div className=" bg-white w-full max-w-md mx-auto mt-7 border-2 border-yellow-900 rounded-2xl">
+      <div className=" bg-white min-h-[25rem] w-full max-w-md mx-auto mt-7 border-2 border-yellow-900 rounded-2xl">
         <div className="w-full h-full p-4 flex flex-col justify-between">
           <textarea form='recipe-form'
             type='text'
