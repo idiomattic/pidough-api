@@ -41,6 +41,7 @@ router.get('/', (req, res) => {
 
 router.get('/:recipeId', (req, res) => {
   const { recipeId } = req.params
+  debugger
   Recipe.findById(recipeId)
       .then(recipe => res.json(recipe))
       .catch(err => res.status(404).json({ noRecipeFound: 'No recipe found.'}))

@@ -9,6 +9,7 @@ const recipesReducer = (state = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_RECIPE:
+      debugger
       nextState[action.recipe._id] = action.recipe;
       return nextState;
     case RECEIVE_ALL_RECIPES:

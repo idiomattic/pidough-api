@@ -115,7 +115,10 @@ const RecipeForm = props => {
       originalProportion: `This recipe was originally made for ${numPizzas} ${pizzaSizeString} ${crustThickness}-crust ${pie}.`,
       data: buildData(doughFactor)
     })
-      .then(res => props.history.push(`/recipes/${res.recipe.id}`))
+      .then(res => {
+        // console.log(res)
+        props.history.push(`/recipes/${res.recipe.id}`)
+      })
   }
 
   const updateFerment = fermentOption => {

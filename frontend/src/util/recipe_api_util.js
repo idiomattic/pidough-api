@@ -6,7 +6,7 @@ export const showAllRecipes = async () => {
 }
 
 export const showRecipe = async (recipeId) => {
-  const response = await axios.get(`/api/recipes${recipeId}`)
+  const response = await axios.get(`/api/recipes/${recipeId}`)
   return response.data;
 }
 

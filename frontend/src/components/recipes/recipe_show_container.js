@@ -17,8 +17,7 @@ const mSTP = (state, {match}) => {
 const mDTP = dispatch => ({
   // displayModal: () => dispatch(displayModal('Comments')),
   getRecipe: recipeId => dispatch(getRecipe(recipeId)),
-  deleteRecipe: recipeId => dispatch(deleteRecipe(recipeId)),
-  createLike: like => dispatch(createLike(like))
+  // deleteRecipe: recipeId => dispatch(deleteRecipe(recipeId)),
 })
 
 export default connect(mSTP, mDTP)(RecipeShow)

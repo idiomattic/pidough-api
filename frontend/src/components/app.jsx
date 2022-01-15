@@ -5,6 +5,7 @@ import '../index.css'
 import HeaderContainer from '../components/header/header_container'
 import Modal from '../components/modal/modal_container'
 import CreateRecipeFormContainer from '../components/recipes/create_recipe_form_container'
+import RecipeShowContainer from './recipes/recipe_show_container';
 // import RecipesIndexContainer from '../components/'
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Switch>
           <Route exact path='/' component={null}/>
           <ProtectedRoute exact path='/recipes/create' component={CreateRecipeFormContainer}/>
+          <Route path='/recipes/:recipeId' component={RecipeShowContainer}/>
         </Switch>
       </div>
       <footer className='bg-yellow-900 relative bottom-0 h-20 w-screen'>

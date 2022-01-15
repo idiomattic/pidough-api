@@ -1,7 +1,5 @@
 import React from "react"
 import { withRouter } from "react-router"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleUp, faAngleDown, faComment } from '@fortawesome/free-solid-svg-icons'
 
 class RecipeShow extends React.Component {
   constructor(props) {
