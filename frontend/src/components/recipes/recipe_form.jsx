@@ -128,57 +128,76 @@ const RecipeForm = props => {
     let formFermentContent
     if (whichFerment === 'yeast') {
       formFermentContent = (
-        <label id='yeast'>Instant Yeast
-          <input type="number" step="0.1"
-            className='outline-0 w-10 mb-3 border-b-2 border-yellow-900'
-            form='recipe-form'
-            onChange={update('ferment', 'yeastQuantity')}/>
-        </label>
+        <div className="w-full grid grid-cols-2">
+          <p className="inline-block w-20 whitespace-nowrap">Yeast</p>
+          <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
+            <input type="number" step="0.1"
+              className='outline-0 w-20'
+              form='recipe-form'
+              onChange={update('ferment', 'yeastQuantity')}/>
+            <p className="italic">grams</p>
+          </div>
+        </div>
       )
     } else if (whichFerment === 'preferment') {
       formFermentContent = (
         <div className='preferment-options'>
-          <label>
+          <div className="w-full grid grid-cols-2">
             <input type="text"
-              className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
+              className="outline-0 w-11/12 mb-3 border-b-2 border-yellow-900"
               placeholder="Flour"
               onChange={update('ferment', 'flourType')}/>
-            <input type="number"
-              className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
-              onChange={update('ferment', 'flourQuantity')}/>
-          </label>
-          <br />
-          <label>Water
-            <input type="number"
-              className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
-              onChange={update('ferment', 'waterQuantity')}/>
-          </label>
-          <br />
-          <label>Yeast
-            <input type="number"
-              className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
-              step="0.1"
-              onChange={update('ferment', 'yeastQuantity')}/>
-          </label>
-          <br />
+            <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
+              <input type="number"
+                className="outline-0 w-20"
+                onChange={update('ferment', 'flourQuantity')}/>
+              <p className="italic">grams</p>
+            </div>
+          </div>
+          <div className="w-full grid grid-cols-2">
+            <p className="inline-block w-20 whitespace-nowrap">Water</p>
+            <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
+              <input type="number"
+                className="outline-0 w-20"
+                onChange={update('ferment', 'waterQuantity')}/>
+              <p className="italic">grams</p>
+            </div>
+          </div>
+          <div className="w-full grid grid-cols-2">
+            <p className="inline-block w-20 whitespace-nowrap">Yeast</p>
+            <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
+              <input type="number"
+                className="outline-0 w-20"
+                step="0.1"
+                onChange={update('ferment', 'yeastQuantity')}/>
+              <p className="italic">grams</p>
+            </div>
+          </div>
         </div>
       )
     } else if (whichFerment === 'sourdough') {
       formFermentContent = (
         <div>
-          <label>Hydration Percentage (%)
-            <input type="number" min="1" max="100"
-              className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
-              id="sourdough-hydration-percent"
-              onChange={update('ferment', 'sourdoughHydration')}/>
-          </label>
-          <br />
-          <label>Mass (grams)
-            <input type="number"
-              className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
-              id="sourdough-mass"
-              onChange={update('ferment', 'sourdoughQuantity')}/>
-          </label>
+          <div className="w-full grid grid-cols-2">
+            <p className="inline-block w-20 whitespace-nowrap">Hydration Percentage</p>
+            <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
+              <input type="number" min="1" max="100"
+                className="outline-0 w-20"
+                id="sourdough-hydration-percent"
+                onChange={update('ferment', 'sourdoughHydration')}/>
+              <p className="italic">%</p>
+            </div>
+          </div>
+          <div className="w-full grid grid-cols-2">
+            <p className="inline-block w-20 whitespace-nowrap">Mass</p>
+            <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
+              <input type="number"
+                className="outline-0 w-20"
+                id="sourdough-mass"
+                onChange={update('ferment', 'sourdoughQuantity')}/>
+              <p className="italic">grams</p>
+            </div>
+          </div>
         </div>
       )
     }
@@ -344,31 +363,29 @@ const RecipeForm = props => {
             </div>
             {fermentedInputs()}
             <br />
-            <div className='bulk'>
-              <div className="w-full">
+            <div>
+              <div className="w-full grid grid-cols-2">
                 <input type="text" 
                   placeholder="Flour"
-                  className="outline-0 w-20 mb-3 border-b-2 border-yellow-900 mr-2"
+                  className="outline-0 w-11/12 mb-3 border-b-2 border-yellow-900 mr-2"
                   onChange={update('bulk', 'flourType')}/>
                 <input type="number" 
                   className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
                   onChange={update('bulk', 'flourQuantity')} />
               </div>
-              {/* <br /> */}
-              <label className="inline-block w-20">Water
+              <div className="w-full grid grid-cols-2">
+                <p className="inline-block w-20">Water</p>
                 <input type="number" 
                   className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
                   onChange={update('bulk', 'waterQuantity')} />
-              </label>
-              <br />
-              <label className="inline-block w-20">Salt
+              </div>
+              <div className="w-full grid grid-cols-2">
+                <p className="inline-block w-20">Salt</p>
                 <input type="number" 
                   className="outline-0 w-10 mb-3 border-b-2 border-yellow-900"
                   onChange={update('bulk', 'saltQuantity')} />
-              </label>
-              <br />
+              </div>
             </div>
-            <br />
             <div className='extra-inputs-container'>
               {mapRespectiveExtraItems('bulk')}
               <h3 onClick={addExtraInputField} className='add-input-button'>+</h3>
