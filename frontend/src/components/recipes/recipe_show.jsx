@@ -72,10 +72,11 @@ class RecipeShow extends React.Component {
     })
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     let {recipeId, recipe, getRecipe, history} = this.props
     getRecipe(recipeId)
-      .then(res => {this.updateRecipeAmounts(res.recipe.data)
+      .then(res => {
+        this.updateRecipeAmounts(res.recipe.data)
         this.setState({ unitRecipeData: res.recipe.data })
       },
         err => history.push('/feed'))
@@ -88,10 +89,10 @@ class RecipeShow extends React.Component {
   
   render() {
     let { recipe } = this.props
-    if (!recipe || !recipe.author) {
+    if (!recipe || !recipe.authorId) {
       return null
     }
-    let pizzasString = this.state.numPizzas > 1 ? 'pizzas' : 'pizza' 
+    let pizzasString = this.state.numPizzas > 1 ? 'pizzas' : 'pizza'
     return(
       <div className='recipe-show'>
         <div className='title-wrapper'>
