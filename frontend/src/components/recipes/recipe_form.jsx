@@ -290,9 +290,9 @@ const RecipeForm = props => {
       .map((input, i) => {
         let switchSectionButton = (section === 'preferment')
           ? <p className='cursor-pointer font-light text-gray-600 hover:text-black hover:italic'
-              onChange={() => updateExtraInputPos('bulk', input)}>Move to Bulk</p>
+              onClick={() => updateExtraInputPos('bulk', input)}>Move to Bulk</p>
           : <p className="cursor-pointer font-light text-gray-600 hover:text-black hover:italic"
-              onChange={() => updateExtraInputPos('preferment', input)}>Move to Preferment</p>
+              onClick={() => updateExtraInputPos('preferment', input)}>Move to Preferment</p>
         return (
           <div className='mt-2 mb-4' key={i}>
             <div className="w-full grid grid-cols-2">
