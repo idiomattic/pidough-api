@@ -10,6 +10,10 @@ const RecipeSchema = new Schema({
     type: Schema.Types.ObjectId, // foreign key
     ref: 'users'
   },
+  authorName: {
+    type: String,
+    required: true
+  },
   data: {
     type: Object,
     required: true

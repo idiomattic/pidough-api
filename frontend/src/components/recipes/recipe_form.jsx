@@ -22,8 +22,6 @@ const RecipeForm = props => {
   const addExtraInputField = () => {
     if (extraInputFields.length < 4) {
       setExtraInputFields([...extraInputFields, {idx: (extraInputFields.length), extraName: '', extraQuantity: '', preferment: false}])
-    } else {
-      console.log('too many extras')
     }
   }
 
@@ -110,13 +108,13 @@ const RecipeForm = props => {
     const doughFactor = parseInt(numPizzas) * pizzaArea * (crustThickness === 'thin' ? 1 : 2.2)
     props.action({
       authorId: author.id,
+      authorName: author.username,
       title,
       body,
       originalProportion: `This recipe was originally made for ${numPizzas} ${pizzaSizeString} ${crustThickness}-crust ${pie}.`,
       data: buildData(doughFactor)
     })
       .then(res => {
-        debugger
         props.history.push(`/recipes/${res.recipe._id}`)
       })
   }
@@ -325,7 +323,7 @@ const RecipeForm = props => {
 
   return(
     <div className='flex flex-wrap -mt-2 w-full mx-auto px-4'>
-      {() => handleErrors()}
+      {handleErrors()}
       <div className="flex mt-7 min-h-[25rem] bg-white max-w-md px-4 mx-auto border-2 border-yellow-900 rounded-2xl ">
         <div className="flex flex-wrap justify-between py-4 " >
           <form className='w-full '

@@ -97,11 +97,12 @@ class RecipeShow extends React.Component {
       <div className='recipe-show'>
         <div className='title-wrapper'>
           <h2 className='recipe-title'>{recipe.title}</h2>
-          {this.isOwner()}
+          {/* {this.isOwner()} */}
         </div>
         <br />
         <div className='recipe-info'>
-          <div className='author' onClick={() => this.redirectToShow(recipe.authorId)}>{recipe.author.username}</div>
+          <div className='author' >{recipe.authorName}</div>
+          {/* onClick={() => this.redirectToShow(recipe.authorId)} */}
           <br />
           <p className="original-proportions">{recipe.originalProportion}</p>
         </div>

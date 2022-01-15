@@ -6,6 +6,7 @@ module.exports = function validateRecipeInput(data) {
 
   data.title = validText(data.title) ? data.title : '';
   data.body = validText(data.body) ? data.body : '';
+  data.authorName = validText(data.authorName) ? data.authorName : '';
   data.originalProportion = validText(data.originalProportion) ? data.originalProportion : '';
 
   if (Validator.isEmpty(data.title)) {
@@ -14,6 +15,10 @@ module.exports = function validateRecipeInput(data) {
 
   if (Validator.isEmpty(data.authorId)) {
     errors.authorId = 'Something went wrong with the author id'
+  }
+
+  if (Validator.isEmpty(data.authorName)) {
+    errors.authorName = 'Something went wrong with the authorName'
   }
 
   if (Object.keys(data.data).length === 0) {
