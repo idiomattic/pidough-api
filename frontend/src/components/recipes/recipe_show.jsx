@@ -154,7 +154,7 @@ class RecipeShow extends React.Component {
     let pizzasString = this.state.numPizzas > 1 ? 'pizzas' : 'pizza'
     return(
       <div className='w-full mx-auto px-4'>
-        <div className="mt-7 bg-white max-w-2xl px-4 mx-auto border-2 border-yellow-900 rounded-2xl">
+        <div className="mt-7 bg-white max-w-2xl px-4 mx-auto border-2 border-yellow-900 rounded-md">
           <div className=''>
             <h2 className='mt-2 text-xl font-bold'>{recipe.title}</h2>
             {/* {this.isOwner()} */}
@@ -164,7 +164,7 @@ class RecipeShow extends React.Component {
           <p className="my-2 italic">{recipe.originalProportion}</p>
         </div>
         <div className='flex flex-wrap justify-center -mt-4 py-4 -ml-10'>
-          <div className="flex flex-col max-w-md justify-between mt-4 mb-2 ml-10 items-center p-4 min-h-[25rem] bg-white border-2 border-yellow-900 rounded-2xl">
+          <div className="flex flex-col max-w-md justify-between mt-4 mb-2 ml-10 items-center p-4 min-h-[25rem] bg-white border-2 border-yellow-900 rounded-md">
             <div className='flex flex-wrap items-center font-semibold'>
               <h3 className="mr-2 whitespace-nowrap">I want to make </h3>
               <input type="number"
@@ -186,7 +186,7 @@ class RecipeShow extends React.Component {
               {this.renderRecipeData()}
             </div>
           </div>
-          <div className="bg-white min-h-[25rem] p-4 max-w-md w-full mt-4 mb-2 ml-10 border-2 border-yellow-900 rounded-2xl">
+          <div className="bg-white min-h-[25rem] p-4 max-w-md w-full mt-4 mb-2 ml-10 border-2 border-yellow-900 rounded-md">
             <p className='w-full h-full'>{recipe.body}</p>
           </div>
 
