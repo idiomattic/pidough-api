@@ -163,9 +163,22 @@ class RecipeShow extends React.Component {
       {extraData}
       {bulkData}
     </div>
-    // <p className="max-w-100%">
-    //   {JSON.stringify(recipeData)}
-    //   </p> 
+  }
+
+  deleteAndRedirect(recipeId) {
+    let { deleteRecipe, history } = this.props
+    deleteRecipe(recipeId)
+      .then(history.push('/'))
+  }
+
+  recipeNav() { // dlete button for owner, and bookmark button eventually
+    let { currentUser, recipe } = this.props
+    let deleteButton = currentUser.id !== recipe.authorId ? null
+      : <span className="cursor-pointer font-light text-gray-600 hover:text-red-700 hover:font-bold"
+          onClick={() => this.deleteAndRedirect(recipe._id)} >Delete</span> 
+    return (<div className="flex items-center justify-between">
+      {deleteButton}
+    </div>)
   }
   
   render() {
@@ -177,8 +190,9 @@ class RecipeShow extends React.Component {
     return(
       <div className='w-full mx-auto px-4'>
         <div className="mt-7 bg-white max-w-2xl px-4 mx-auto border-2 border-yellow-900 rounded-md">
-          <div className=''>
+          <div className='flex items-center justify-between'>
             <h2 className='mt-2 text-xl font-bold'>{recipe.title}</h2>
+            {this.recipeNav()}
             {/* {this.isOwner()} */}
           </div>
           <div>{recipe.authorName}</div>

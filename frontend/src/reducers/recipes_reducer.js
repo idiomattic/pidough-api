@@ -1,6 +1,7 @@
 import {
   RECEIVE_ALL_RECIPES,
-  RECEIVE_RECIPE
+  RECEIVE_RECIPE,
+  REMOVE_RECIPE
 } from "../actions/recipe_actions";
 
 const recipesReducer = (state = {}, action) => {
@@ -13,6 +14,9 @@ const recipesReducer = (state = {}, action) => {
       return nextState;
     case RECEIVE_ALL_RECIPES:
       return action.recipes;
+    case REMOVE_RECIPE:
+      delete nextState[action.recipeId]
+      return nextState;
     default:
       return state;
   }
