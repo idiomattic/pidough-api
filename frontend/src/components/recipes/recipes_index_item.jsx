@@ -5,9 +5,12 @@ function RecipesIndexItem(props) {
   let { recipe, history } = props
   let truncatedBody = recipe.body.split('. ')[0] + '...'
   return (
-    <div className='px-4' onClick={() => history.push(`/recipes/${recipe._id}`)}>
-      <div className='bg-white max-w-sm px-4 py-3 border-2 border-yellow-900 rounded-md'>
-        <h2 className='mt-2 text-xl font-bold'>{recipe.title}</h2>
+    <div className='px-4 w-[30rem] mt-2' onClick={() => history.push(`/recipes/${recipe._id}`)}>
+      <div className='bg-white px-4 py-3 border-2 border-yellow-900 rounded-md'>
+        <div className='flex justify-between items-center my-2'>
+          <h2 className='text-xl font-bold'>{recipe.title}</h2>
+          <p>{recipe.authorName}</p>
+        </div>
         <p className='w-full'>{truncatedBody}</p>
       </div>
     </div>

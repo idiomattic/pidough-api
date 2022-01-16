@@ -193,10 +193,8 @@ class RecipeShow extends React.Component {
           <div className='flex items-center justify-between'>
             <h2 className='mt-2 text-xl font-bold'>{recipe.title}</h2>
             {this.recipeNav()}
-            {/* {this.isOwner()} */}
           </div>
           <div>{recipe.authorName}</div>
-          {/* onClick={() => this.redirectToShow(recipe.authorId)} */}
           <p className="my-2 italic">{recipe.originalProportion}</p>
         </div>
         <div className='flex flex-wrap justify-center -mt-4 py-4 -ml-10'>

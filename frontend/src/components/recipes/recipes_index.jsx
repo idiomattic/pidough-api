@@ -6,7 +6,7 @@ function RecipesIndex(props) {
 
   return (
     <div className='mt-7 w-full'>
-      <ul className='flex flex-wrap -mt-2 w-full mx-auto px-2'>
+      <ul className='flex flex-wrap justify-center -mt-4 w-full mx-auto px-2'>
         {props.recipes.map((recipe, i) => (
           <RecipesIndexItem key={i} recipe={recipe}/>
         ))}
