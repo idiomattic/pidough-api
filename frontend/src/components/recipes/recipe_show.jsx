@@ -53,7 +53,7 @@ class RecipeShow extends React.Component {
       dataSetKeys.forEach((key) => {
         let currentValue = dataSet[key]
         if (!isNaN(parseFloat(currentValue))) {
-          if (key == 'yeastQuantity') {
+          if (key === 'yeastQuantity') {
             respectiveScaledData[key] = parseFloat(parseFloat(currentValue) * doughFactor)
           } else {
             respectiveScaledData[key] = parseInt(parseFloat(currentValue) * doughFactor)
@@ -94,47 +94,69 @@ class RecipeShow extends React.Component {
     let extra = recipeData?.extra || {}
     let fermentData = Object.keys(ferment).length === 0
       ? null
-      : <ul>
-          {Object.keys(ferment).map((key, i) => {
-            let val
-            if (parseFloat(ferment[key])) {
-              val = Math.round(ferment[key] * 10) / 10
-            } else {
-              val = ferment[key]
-            }
-            return (
-            <li key={i}>
-              <div className="w-full grid grid-cols-2">
-                <p>{this.changeKeyName(key)}:</p>
-                <p>{val}</p>
-              </div>
-            </li>
-          )})}
-        </ul>
+      : <div> 
+          <h3 className="italic font-semibold">Ferment</h3>
+          <ul>
+              {Object.keys(ferment).map((key, i) => {
+                let val
+                if (parseFloat(ferment[key])) {
+                  val = Math.round(ferment[key] * 10) / 10 + ' g'
+                } else {
+                  val = ferment[key]
+                }
+                return (
+                <li key={i}>
+                  <div className="w-full grid grid-cols-2">
+                    <p>{this.changeKeyName(key)}:</p>
+                    <p>{val}</p>
+                  </div>
+                </li>
+              )})}
+            </ul>
+          </div>
     let bulkData = Object.keys(bulk).length === 0
       ? null
-      : <ul>
-          {Object.keys(bulk).map((key, i) => (
-            <li key={i}>
-                <div className="w-full grid grid-cols-2">
-                  <p>{this.changeKeyName(key)}:</p>
-                  <p>{bulk[key]}</p>
-                </div>
-            </li>
-          ))}
-        </ul>
+      : <div>
+          <h3 className="italic font-semibold">Bulk</h3>
+          <ul>
+              {Object.keys(bulk).map((key, i) => {
+                let val
+                if (parseFloat(bulk[key])) {
+                  val = Math.round(bulk[key] * 10) / 10 + ' g'
+                } else {
+                  val = bulk[key]
+                }
+                return (
+                <li key={i}>
+                    <div className="w-full grid grid-cols-2">
+                      <p>{this.changeKeyName(key)}:</p>
+                      <p>{val}</p>
+                    </div>
+                </li>
+              )})}
+            </ul>
+        </div>
     let extraData = Object.keys(extra).length === 0
       ? null
-      : <ul>
-          {Object.keys(extra).map((key, i) => (
-            <li key={i}>
-              <div className="w-full grid grid-cols-2">
-                <p>{this.changeKeyName(key)}:</p>
-                <p>{extra[key]}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
+      : <div>
+          <ul>
+              {Object.keys(extra).map((key, i) => {
+                let val
+                if (parseFloat(extra[key])) {
+                  val = Math.round(extra[key] * 10) / 10 + ' g'
+                } else {
+                  val = extra[key]
+                }
+                return (
+                <li key={i}>
+                  <div className="w-full grid grid-cols-2">
+                    <p>{this.changeKeyName(key)}:</p>
+                    <p>{val}</p>
+                  </div>
+                </li>
+              )})}
+            </ul>
+        </div> 
     
     return <div className="max-w-full">
       {fermentData}
