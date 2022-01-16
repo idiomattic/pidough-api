@@ -19,7 +19,7 @@ class RecipeShow extends React.Component {
     let {numPizzas, pizzaSize, crustThickness} = this.state
     const pizzaDimensions = pizzaSize.match(/\d+\.\d+|\d+/g)
     const pizzaArea = pizzaDimensions.length === 1 ? (Math.pow((parseFloat(pizzaDimensions[0]) / 2), 2) * Math.PI) : parseFloat(pizzaDimensions[0]) * parseFloat(pizzaDimensions[1])
-    const doughFactor = parseInt(numPizzas) * pizzaArea * (crustThickness === 'thin' ? 1 : 2.2)
+    const doughFactor = parseInt(numPizzas) * pizzaArea * (crustThickness === 'thin' ? 1 : (crustThickness === 'thick-ish' ? 1.6 : 2.2))
     this.setState({ doughFactor }, res => this.updateRecipeAmounts())
   }
 
@@ -214,6 +214,7 @@ class RecipeShow extends React.Component {
               <h3>{` ${pizzasString} with `}</h3>
               <select className="font-semibold" onChange={this.update('crustThickness')}>
                 <option value="thin" >thin</option>
+                <option value="thick-ish" >thick-ish</option>
                 <option value="thick" >thick</option>
               </select>
               <h3> crust.</h3>
@@ -227,14 +228,6 @@ class RecipeShow extends React.Component {
           </div>
 
         </div>
-        
-        {/* <div className='recipe-footer'>
-          <div className='left-buttons'>
-            <div className='comment-nav'>
-              <FontAwesomeIcon icon={faComment} onClick={() => this.showCommentsModal()}/>
-            </div>
-          </div>
-        </div> */}
       </div>
     )
   }

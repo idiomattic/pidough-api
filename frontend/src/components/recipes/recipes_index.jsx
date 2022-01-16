@@ -5,7 +5,7 @@ function RecipesIndex(props) {
   useEffect(() => props.getAllRecipes(), [])
 
   return (
-    <div className=''>
+    <div className='mt-7 w-full'>
       <ul className='flex flex-wrap -mt-2 w-full mx-auto px-2'>
         {props.recipes.map((recipe, i) => (
           <RecipesIndexItem key={i} recipe={recipe}/>

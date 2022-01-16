@@ -103,7 +103,7 @@ const RecipeForm = props => {
       pizzaArea = parseFloat(pizzaDimensions[0]) * parseFloat(pizzaDimensions[1])
       pizzaSizeString = `${pizzaDimensions[0]}-inch by ${pizzaDimensions[1]}-inch`
     }
-    const doughFactor = parseInt(numPizzas) * pizzaArea * (crustThickness === 'thin' ? 1 : 2.2)
+    const doughFactor = parseInt(numPizzas) * pizzaArea * (crustThickness === 'thin' ? 1 : (crustThickness === 'thick-ish' ? 1.6 : 2.2))
     props.action({
       authorId: author.id,
       authorName: author.username,
@@ -407,6 +407,7 @@ const RecipeForm = props => {
               <h3 className="whitespace-nowrap mr-2">{` ${pizzasString} with `}</h3>
               <select className="form-select pl-0 pr-6" onChange={updateThickness()}>
                 <option value="thin" >thin</option>
+                <option value="thick-ish" >thick-ish</option>
                 <option value="thick" >thick</option>
               </select>
               <h3 className="-ml-1"> crust.</h3>
