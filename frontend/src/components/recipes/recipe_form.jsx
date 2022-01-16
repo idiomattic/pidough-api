@@ -103,7 +103,6 @@ const RecipeForm = props => {
       pizzaArea = parseFloat(pizzaDimensions[0]) * parseFloat(pizzaDimensions[1])
       pizzaSizeString = `${pizzaDimensions[0]}-inch by ${pizzaDimensions[1]}-inch`
     }
-    debugger
     const doughFactor = parseInt(numPizzas) * pizzaArea * (crustThickness === 'thin' ? 1 : 2.2)
     props.action({
       authorId: author.id,
@@ -131,7 +130,7 @@ const RecipeForm = props => {
         <div className="w-full grid grid-cols-2">
           <p className="inline-block w-20 whitespace-nowrap">Yeast</p>
           <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
-            <input type="number" step="0.1"
+            <input type="number" step="0.1" min='0'
               className='outline-0 w-20'
               form='recipe-form'
               onChange={update('ferment', 'yeastQuantity')}/>
@@ -148,7 +147,7 @@ const RecipeForm = props => {
               placeholder="Flour"
               onChange={update('ferment', 'flourType')}/>
             <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
-              <input type="number"
+              <input type="number" min='0'
                 className="outline-0 w-20"
                 onChange={update('ferment', 'flourQuantity')}/>
               <p className="italic">grams</p>
@@ -157,7 +156,7 @@ const RecipeForm = props => {
           <div className="w-full grid grid-cols-2">
             <p className="inline-block w-20 whitespace-nowrap">Water</p>
             <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
-              <input type="number"
+              <input type="number" min='0'
                 className="outline-0 w-20"
                 onChange={update('ferment', 'waterQuantity')}/>
               <p className="italic">grams</p>
@@ -166,7 +165,7 @@ const RecipeForm = props => {
           <div className="w-full grid grid-cols-2">
             <p className="inline-block w-20 whitespace-nowrap">Yeast</p>
             <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
-              <input type="number"
+              <input type="number" min='0'
                 className="outline-0 w-20"
                 step="0.1"
                 onChange={update('ferment', 'yeastQuantity')}/>
@@ -191,7 +190,7 @@ const RecipeForm = props => {
           <div className="w-full grid grid-cols-2">
             <p className="inline-block w-20 whitespace-nowrap">Mass</p>
             <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
-              <input type="number"
+              <input type="number" min='0'
                 className="outline-0 w-20"
                 id="sourdough-mass"
                 onChange={update('ferment', 'sourdoughQuantity')}/>
@@ -302,7 +301,7 @@ const RecipeForm = props => {
                 onChange={update('extra', `extra${i}Name`, input)}
                 value={extraInputFields[input.originalIndex]['extraName']}/>
               <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
-                <input type="number" 
+                <input type="number" min='0'
                   className="outline-0 w-20"
                   onChange={update('extra', `extra${i}Quantity`, input)}
                   value={extraInputFields[input.originalIndex]['extraQuantity']} />
@@ -365,7 +364,7 @@ const RecipeForm = props => {
                   className="outline-0 w-11/12 mb-3 border-b-2 border-yellow-900 mr-2"
                   onChange={update('bulk', 'flourType')}/>
                 <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
-                  <input type="number" 
+                  <input type="number" min='0'
                     className="outline-0 w-20"
                     onChange={update('bulk', 'flourQuantity')} />
                   <p className="italic">grams</p>
@@ -374,7 +373,7 @@ const RecipeForm = props => {
               <div className="w-full grid grid-cols-2">
                 <p className="inline-block w-20">Water</p>
                 <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
-                  <input type="number" 
+                  <input type="number" min='0'
                     className="outline-0 w-20 "
                     onChange={update('bulk', 'waterQuantity')} />
                   <p className="italic">grams</p>
@@ -383,7 +382,7 @@ const RecipeForm = props => {
               <div className="w-full grid grid-cols-2">
                 <p className="inline-block w-20">Salt</p>
                 <div className="flex w-40 justify-between mb-3 border-b-2 border-yellow-900">
-                  <input type="number" 
+                  <input type="number" min='0'
                     className="outline-0 w-20 "
                     onChange={update('bulk', 'saltQuantity')} />
                   <p className="italic">grams</p>
@@ -397,7 +396,7 @@ const RecipeForm = props => {
             </div>
             <div className='flex flex-wrap items-center'>
               <h3 className="mr-2 whitespace-nowrap">This makes </h3>
-              <input type="number" 
+              <input type="number" min='1'
                 onChange={updateNumPizzas()} 
                 placeholder="3" 
                 className="px-1 outline-0 w-10 mr-2 border-b-2 border-yellow-900" />
