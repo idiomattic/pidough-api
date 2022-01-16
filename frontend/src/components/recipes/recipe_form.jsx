@@ -95,16 +95,15 @@ const RecipeForm = props => {
     const pizzaDimensions = pizzaSize.match(/\d+\.\d+|\d+/g)
     let pizzaArea
     let pizzaSizeString
-    let pie
+    let pie = parseInt(numPizzas) > 1 ? 'pies' : 'pie'
     if (pizzaDimensions.length === 1) {
       pizzaArea = Math.pow((parseFloat(pizzaDimensions[0]) / 2), 2) * Math.PI
       pizzaSizeString = `${pizzaDimensions[0]}-inch`
-      pie = 'pie'
     } else {
       pizzaArea = parseFloat(pizzaDimensions[0]) * parseFloat(pizzaDimensions[1])
       pizzaSizeString = `${pizzaDimensions[0]}-inch by ${pizzaDimensions[1]}-inch`
-      pie = 'pies'
     }
+    debugger
     const doughFactor = parseInt(numPizzas) * pizzaArea * (crustThickness === 'thin' ? 1 : 2.2)
     props.action({
       authorId: author.id,
