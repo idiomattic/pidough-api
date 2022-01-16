@@ -6,7 +6,7 @@ import HeaderContainer from '../components/header/header_container'
 import Modal from '../components/modal/modal_container'
 import CreateRecipeFormContainer from '../components/recipes/create_recipe_form_container'
 import RecipeShowContainer from './recipes/recipe_show_container';
-// import RecipesIndexContainer from '../components/'
+import RecipesIndexContainer from '../components/recipes/recipes_index_container'
 
 const App = () => {
   return(
@@ -15,7 +15,7 @@ const App = () => {
     <div className='flex flex-col justify-between min-h-[95vh]'>
       <div className='relative pb-6 overflow-hidden'>
         <Switch>
-          <Route exact path='/' component={null}/>
+          <Route exact path='/' component={RecipesIndexContainer}/>
           <ProtectedRoute exact path='/recipes/create' component={CreateRecipeFormContainer}/>
           <Route path='/recipes/:recipeId' component={RecipeShowContainer}/>
         </Switch>
