@@ -321,7 +321,7 @@ const RecipeForm = props => {
   return(
     <div className='flex flex-wrap -mt-2 w-full mx-auto px-4'>
       {handleErrors()}
-      <div className="flex mt-7 min-h-[25rem] bg-white max-w-md px-4 mx-auto border-2 border-yellow-900 rounded-md ">
+      <div className="flex mt-7 min-h-[25rem] bg-white max-w-md px-4 mx-auto border-2 border-yellow-900 rounded-sm ">
         <div className="flex flex-wrap justify-between py-4 " >
           <form className='w-full '
             onSubmit={handleSubmit} 
@@ -331,31 +331,31 @@ const RecipeForm = props => {
               value={title} 
               onChange={update('title')} 
               placeholder="Title" />
-            <br />
             <div className='mb-2'>
+              <h3 className="font-semibold pb-1">Ferment</h3>
               <label className="inline-flex items-center whitespace-nowrap">Instant Yeast
                 <input type="radio"
-                  className=" border-yellow-900 rounded-md ml-1 mr-2"
+                  className=" border-yellow-900 rounded-sm ml-1 mr-2"
                   name="ferment-choice" 
                   defaultChecked 
                   onChange={() => updateFerment('yeast')}/>
               </label>
               <label className="inline-flex items-center whitespace-nowrap">Preferment
                 <input type="radio" 
-                  className=" bg-yellow-900 rounded-md ml-1 mr-2"
+                  className=" bg-yellow-900 rounded-sm ml-1 mr-2"
                   name="ferment-choice" 
                   onChange={() => updateFerment('preferment')}/>
               </label>
               <label className="inline-flex items-center whitespace-nowrap">Sourdough Starter
                 <input type="radio"
-                  className=" bg-yellow-900 rounded-md"
+                  className=" bg-yellow-900 rounded-sm"
                   name="ferment-choice" 
                   onChange={() => updateFerment('sourdough')}/>
               </label>
             </div>
             {fermentedInputs()}
-            <br />
-            <div>
+            <div className="pt-4 mt-4 border-t-2 border-dotted border-yellow-900">
+              <h3 className="font-semibold pb-2">Bulk</h3>
               <div className="w-full grid grid-cols-2">
                 <input type="text" 
                   placeholder="Flour"
@@ -392,7 +392,7 @@ const RecipeForm = props => {
               <h3 onClick={addExtraInputField}
                 className='cursor-pointer font-light text-gray-600 hover:text-black hover:italic'>Add an ingredient</h3>
             </div>
-            <div className='flex flex-wrap items-center'>
+            <div className='flex flex-wrap items-center pt-4 border-t-2 border-dotted border-yellow-900'>
               <h3 className="mr-2 whitespace-nowrap">This makes </h3>
               <input type="number" min='1'
                 onChange={updateNumPizzas()} 
@@ -413,7 +413,7 @@ const RecipeForm = props => {
           </form>
         </div>
       </div>
-      <div className=" bg-white min-h-[25rem] w-full max-w-md mx-auto mt-7 border-2 border-yellow-900 rounded-md">
+      <div className=" bg-white min-h-[25rem] w-full max-w-md mx-auto mt-7 border-2 border-yellow-900 rounded-sm">
         <div className="w-full h-full p-4 flex flex-col justify-between">
           <textarea form='recipe-form'
             type='text'

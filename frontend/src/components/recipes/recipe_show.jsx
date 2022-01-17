@@ -94,9 +94,9 @@ class RecipeShow extends React.Component {
     let extra = recipeData?.extra || {}
     let fermentData = Object.keys(ferment).length === 0
       ? null
-      : <div> 
-          <h3 className="italic font-semibold">Ferment</h3>
-          <ul>
+      : <div className="pt-2 border-t-2 border-dotted border-yellow-900"> 
+          <h3 className="font-semibold">Ferment</h3>
+          <ul className="pb-2 mb-2 border-b-2 border-dotted border-yellow-900">
               {Object.keys(ferment).map((key, i) => {
                 let nextKey = Object.keys(ferment)[i + 1]
                 let val
@@ -135,7 +135,7 @@ class RecipeShow extends React.Component {
     let bulkData = Object.keys(bulk).length === 0
       ? null
       : <div>
-          <h3 className="italic font-semibold">Bulk</h3>
+          <h3 className="font-semibold">Bulk</h3>
           <ul>
               {Object.keys(bulk).map((key, i) => {
                 let val
@@ -211,7 +211,7 @@ class RecipeShow extends React.Component {
     let pizzasString = this.state.numPizzas > 1 ? 'pizzas' : 'pizza'
     return(
       <div className='w-full mx-auto px-4'>
-        <div className="mt-7 bg-white max-w-2xl px-4 mx-auto border-2 border-yellow-900 rounded-md">
+        <div className="mt-7 bg-white max-w-2xl px-4 mx-auto border-2 border-yellow-900 rounded-sm">
           <div className='flex items-center justify-between'>
             <h2 className='mt-2 text-xl font-bold'>{recipe.title}</h2>
             {this.recipeNav()}
@@ -220,7 +220,7 @@ class RecipeShow extends React.Component {
           <p className="my-2 italic">{recipe.originalProportion}</p>
         </div>
         <div className='flex flex-wrap justify-center -mt-4 py-4 -ml-10'>
-          <div className="flex flex-col max-w-md justify-between mt-4 mb-2 ml-10 items-center p-4 min-h-[25rem] bg-white border-2 border-yellow-900 rounded-md">
+          <div className="flex flex-col max-w-md justify-between mt-4 mb-2 ml-10 items-center p-4 min-h-[25rem] bg-white border-2 border-yellow-900 rounded-sm">
             <div className='flex flex-wrap items-center font-semibold'>
               <h3 className="mr-2 whitespace-nowrap">I want to make </h3>
               <input type="number"
@@ -243,8 +243,8 @@ class RecipeShow extends React.Component {
               {this.renderRecipeData()}
             </div>
           </div>
-          <div className="bg-white min-h-[25rem] p-4 max-w-md w-full mt-4 mb-2 ml-10 border-2 border-yellow-900 rounded-md">
-            <p className='w-full h-full'>{recipe.body}</p>
+          <div className="bg-white min-h-[25rem] p-4 max-w-md w-full mt-4 mb-2 ml-10 border-2 border-yellow-900 rounded-sm">
+            <pre className='w-full h-full whitespace-pre-wrap font-[inherit]'>{recipe.body}</pre>
           </div>
 
         </div>
