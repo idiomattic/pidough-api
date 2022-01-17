@@ -24,11 +24,11 @@ if (process.env.NODE_ENV === 'production') {
     if (req.headers.host === 'pidough.herokuapp.com') {
       return res.redirect(301, 'http://www.pidough.xyz');
     }
-    if (req.headers['x-forwarded-proto'] !== 'https') {
-      return res.redirect('https://' + req.headers.host + req.url);
-    } else {
-      return next();
-    }
+    // if (req.headers['x-forwarded-proto'] !== 'https') {
+    //   return res.redirect('https://' + req.headers.host + req.url);
+    // } else {
+    //   return next();
+    // }
   })
   app.use(express.static('frontend/build'));
   app.get('/', (req, res) => {
