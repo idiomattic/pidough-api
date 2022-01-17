@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 
 if (process.env.NODE_ENV === 'production') {
   app.use((req, res, next) => {
-    if (req.headers.host === 'pidough.herokuapp.com') {
+    if (req.headers.host === 'pidough.herokuapp.com' || 'pidough.app') {
       return res.redirect(301, 'http://www.pidough.xyz');
     }
     if (req.headers['x-forwarded-proto'] !== 'https') {
