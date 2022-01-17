@@ -141,27 +141,31 @@ class RecipeShow extends React.Component {
       : <div>
           <ul>
               {Object.keys(extra).map((key, i) => {
+                let nextKey = Object.keys(extra)[i + 1]
                 let val
-                if (parseFloat(extra[key])) {
-                  val = Math.round(extra[key] * 10) / 10 + ' g'
-                } else {
-                  val = extra[key]
+                if (key.charAt(6) === 'N') {
+                  if (parseFloat(extra[nextKey])) {
+                    val = Math.round(extra[nextKey] * 10) / 10 + ' g'
+                  } else {
+                    val = extra[nextKey]
+                  }
+                  return (
+                    <li key={i}>
+                      <div className="w-full grid grid-cols-2">
+                        <p>{this.changeKeyName(extra[key])}</p>
+                        <p>{val}</p>
+                      </div>
+                    </li>
+                  )
                 }
-                return (
-                <li key={i}>
-                  <div className="w-full grid grid-cols-2">
-                    <p>{this.changeKeyName(key)}:</p>
-                    <p>{val}</p>
-                  </div>
-                </li>
-              )})}
+              })}
             </ul>
         </div> 
     
     return <div className="max-w-full">
       {fermentData}
-      {extraData}
       {bulkData}
+      {extraData}
     </div>
   }
 
