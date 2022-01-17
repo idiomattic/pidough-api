@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import { withRouter } from "react-router";
-// import UserNavContainer from "../user_nav/user_nav_container";
 
 const RecipeForm = props => {
   let {author} = props
@@ -335,22 +334,21 @@ const RecipeForm = props => {
             <br />
             <div className='mb-2'>
               <label className="inline-flex items-center whitespace-nowrap">Instant Yeast
-                <input type="radio" 
-                  // className="form-checkbox text-yellow-900 rounded-md ml-1 mr-2"
-                  className="form-radio text-yellow-900 rounded-md ml-1 mr-2"
+                <input type="radio"
+                  className=" border-yellow-900 rounded-md ml-1 mr-2"
                   name="ferment-choice" 
                   defaultChecked 
                   onChange={() => updateFerment('yeast')}/>
               </label>
               <label className="inline-flex items-center whitespace-nowrap">Preferment
                 <input type="radio" 
-                  className="form-radio text-yellow-900 rounded-md ml-1 mr-2"
+                  className=" bg-yellow-900 rounded-md ml-1 mr-2"
                   name="ferment-choice" 
                   onChange={() => updateFerment('preferment')}/>
               </label>
               <label className="inline-flex items-center whitespace-nowrap">Sourdough Starter
                 <input type="radio"
-                  className="form-radio text-yellow-900 rounded-md"
+                  className=" bg-yellow-900 rounded-md"
                   name="ferment-choice" 
                   onChange={() => updateFerment('sourdough')}/>
               </label>
@@ -405,12 +403,12 @@ const RecipeForm = props => {
                 placeholder="14&quot;, 10&quot;x14&quot;, etc. "
                 className="outline-0 w-32 border-b-2 border-yellow-900 mr-2" />
               <h3 className="whitespace-nowrap mr-2">{` ${pizzasString} with `}</h3>
-              <select className="form-select pl-0 pr-6" onChange={updateThickness()}>
+              <select className="form-select pl-0 pr-4" onChange={updateThickness()}>
                 <option value="thin" >thin</option>
                 <option value="thick-ish" >thick-ish</option>
                 <option value="thick" >thick</option>
               </select>
-              <h3 className="-ml-1"> crust.</h3>
+              <h3 className="ml-1"> crust.</h3>
             </div>
           </form>
         </div>
