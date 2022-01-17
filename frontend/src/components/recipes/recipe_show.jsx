@@ -98,20 +98,38 @@ class RecipeShow extends React.Component {
           <h3 className="italic font-semibold">Ferment</h3>
           <ul>
               {Object.keys(ferment).map((key, i) => {
+                let nextKey = Object.keys(ferment)[i + 1]
                 let val
-                if (parseFloat(ferment[key])) {
-                  val = Math.round(ferment[key] * 10) / 10 + ' g'
-                } else {
-                  val = ferment[key]
+                if (key.charAt(6) === 'N' && key.charAt(0) === 'e') {
+                  if (parseFloat(ferment[nextKey])) {
+                    val = Math.round(ferment[nextKey] * 10) / 10 + ' g'
+                  } else {
+                    val = ferment[nextKey]
+                  }
+                  return (
+                    <li key={i}>
+                      <div className="w-full grid grid-cols-2">
+                        <p>{this.changeKeyName(ferment[key])}</p>
+                        <p>{val}</p>
+                      </div>
+                    </li>
+                  )
+                } else if (key.charAt(6) !== "Q") {
+                  if (parseFloat(ferment[key])) {
+                    val = Math.round(ferment[key] * 10) / 10 + ' g'
+                  } else {
+                    val = ferment[key]
+                  }
+                  return (
+                    <li key={i}>
+                      <div className="w-full grid grid-cols-2">
+                        <p>{this.changeKeyName(key)}:</p>
+                        <p>{val}</p>
+                      </div>
+                    </li>
+                  )
                 }
-                return (
-                <li key={i}>
-                  <div className="w-full grid grid-cols-2">
-                    <p>{this.changeKeyName(key)}:</p>
-                    <p>{val}</p>
-                  </div>
-                </li>
-              )})}
+              })}
             </ul>
           </div>
     let bulkData = Object.keys(bulk).length === 0
