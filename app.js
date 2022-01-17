@@ -12,6 +12,13 @@ const recipes = require('./routes/api/recipes')
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('frontend/build'));
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+  })
+}
+
 app.get("/", (req, res) => res.send("Hello World 2"));
 app.use("/api/users", users);
 app.use('/api/recipes', recipes)
