@@ -50,8 +50,10 @@ class RecipeShow extends React.Component {
     dataSets.forEach((dataSet, idx) => {
       let dataSetKeys = Object.keys(dataSet)
       let respectiveScaledData = [scaledFermentData, scaledBulkData, scaledExtraData][idx] // keying into object
-      let yeastKeyIdx
-      dataSetKeys.forEach((key, i) => {
+      // let yeastKeyIdx
+      // dataSetKeys.forEach((key, i) => {
+      for (let i=0; i< dataSetKeys.length; i += 0) {
+        let key = dataSetKeys[i]
         let currentValue = dataSet[key]
         if (!isNaN(parseFloat(currentValue))) {
           if (key === 'yeastQuantity') {
@@ -59,22 +61,20 @@ class RecipeShow extends React.Component {
           } else {
             respectiveScaledData[key] = parseInt(parseFloat(currentValue) * doughFactor)
           }
+          i += 1
         } else if (currentValue.match(/yeast|Yeast/)) {
           respectiveScaledData[key] = currentValue
-          yeastKeyIdx = i + 1
-        } else if (i === yeastKeyIdx) {
-          // let yeastVal = dataSet[dataSetKeys[i]]
-          // respectiveScaledData[currentValue] = parseFloat(parseFloat(yeastVal) * doughFactor)
-          debugger
-          respectiveScaledData[key] = parseFloat(parseFloat(currentValue) * doughFactor)
-          yeastKeyIdx = undefined
-        } 
+          let yeastQuantityIdx = i + 1
+          let yeastVal = dataSet[dataSetKeys[yeastQuantityIdx]]
+          respectiveScaledData[dataSetKeys[yeastQuantityIdx]] = parseFloat(parseFloat(yeastVal) * doughFactor)
+          i += 2
+        }
         else {
           respectiveScaledData[key] = currentValue
+          i += 1
         }
-      })
+      }
     })
-    debugger
     this.setState({
       recipeData: {
         ferment: scaledFermentData,
