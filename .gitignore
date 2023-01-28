@@ -1,6 +1,5 @@
 # /config/keys.js
 /node_modules
 /config/keys_dev.js
-/config/api_keys.json
 # /config/passport.js
 node_modules

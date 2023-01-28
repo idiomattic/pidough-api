@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const User = require('../../models/User');
+const User = require('../models/User');
 const keys = require('../../config/keys');
 const jwt = require('jsonwebtoken'); 
 const passport = require('passport');
+const _ = require('lodash');
 
-const Recipe = require("../../models/Recipe");
-const validateRecipeInput = require('../../validations/recipe');
+const Recipe = require("../models/Recipe");
+const validateRecipeInput = require('../validations/recipe');
 
 router.post('/create', passport.authenticate('jwt', { session: false }), 
   (req, res) => {
@@ -33,23 +34,34 @@ router.post('/create', passport.authenticate('jwt', { session: false }),
     })
 })
 
-router.get('/', (req, res) => {
-  Recipe.find()
-    .then(recipes => res.json(recipes))
-    .catch(err => res.status(404).json({ noRecipesFound: 'No recipes found.'}))
+router.get('/', async (req, res) => {
+  const recipes = await Recipe.find();
+  console.log(recipes)
+
+  if (_.isEmpty(recipes)) {
+    return res.status(404).json({ noRecipesFound: 'No recipes found.'})
+  };
+
+  return res.json(recipes);
 })
 
-router.get('/:recipeId', (req, res) => {
+router.get('/:recipeId', async (req, res) => {
   const { recipeId } = req.params
-  Recipe.findById(recipeId)
-    .then(recipe => res.json(recipe))
-    .catch(err => res.status(404).json({ noRecipeFound: 'No recipe found.'}))
-  })
+  const recipe = await Recipe.findById(recipeId);
+  console.log(recipe)
+  
+  if (!recipe) {
+    return res.status(404).json({ noRecipeFound: 'No recipe found.'})
+  }
+
+  return res.json(recipe);
+})
   
   router.delete('/:recipeId/delete', (req, res) => {
     const { recipeId } = req.params
     Recipe.findByIdAndDelete(recipeId)
-    .catch(err => res.status(404).json({ noRecipeFound: 'No recipe found.'}))
+      .then(_recipe => res.json('successfully deleted'))
+      .catch(err => res.status(404).json({ noRecipeFound: 'No recipe found.', err}))
 })
 
 module.exports = router

@@ -1,9 +1,5 @@
-// module.exports = {
-//   mongoURI: 'mongodb+srv://matthewlese:7Qz4eQNPjaHb@cluster0.hi8ss.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-//   secretOrKey: 'secret'
-// }
 if (process.env.NODE_ENV === 'production') {
-  module.exports = require('./keys_prod');
+  module.exports = require('./keys_prod.js');
 } else {
-  module.exports = require('./keys_dev');
+  module.exports = require('./keys_dev.js');
 }
